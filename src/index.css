@@ -11,6 +11,14 @@ body {
   font-family: "Lora", serif;
 }
 
+.green-text {
+  color: rgb(107, 219, 192)
+}
+
+.green-background {
+  background-color: rgb(107, 219, 192)
+}
+
 #eMcyvzsehbA226_to {
   animation: eMcyvzsehbA226_to__to 2100ms linear infinite normal forwards;
 }
