@@ -13,7 +13,7 @@ function LandingPage(props) {
     <>
     <div className="flex flex-row">
       <div className="w-[50%] h-[75vh] pr-20 flex flex-col justify-center align-middle">
-        <h1 className="font-extrabold text-5xl">Titel Landing Page</h1>
+        <h1 className="font-extrabold text-5xl">Title Landing Page</h1>
         <p className="mt-5">Beschreibung Landing Page. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
         </p>
         <h2 className="font-bold">Ein Projekt der HTW Berlin</h2>
