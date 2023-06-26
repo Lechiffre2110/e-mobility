@@ -6,10 +6,9 @@ export default function root() {
   return (
     <>
       <Navbar />
-      <div id="detail">
+      <div className="mt-20 px-16" id="detail">
         <Outlet />
       </div>
-      <Footer />
     </>
   );
 }
