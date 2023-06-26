@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import './index.css'
 import Root from './routes/root.jsx'
 import ErrorPage from "./pages/error-page";
 import Authors from "./pages/authors";
@@ -7,11 +9,7 @@ import Blog from './pages/blog.jsx';
 import Cars from './pages/cars.jsx';
 import Documentation from './pages/documentation.jsx';
 import LandingPage from './pages/landing-page.jsx';
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+
 
 const router = createBrowserRouter([
   {
