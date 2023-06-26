@@ -17,7 +17,7 @@ export default function Navbar() {
                             <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
                         </li>
                         <li className="group ease-in duration-300">
-                            <Link to="/documentation">Dokumentation</Link>
+                            <Link to="https://project-e-mobility.gitbook.io/projekt-e-mobility/" target="_blank">Dokumentation</Link>
                             <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
                         </li>
                         <li className="group ease-in duration-300">
