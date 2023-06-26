@@ -12,7 +12,7 @@ function LandingPage(props) {
   return (
     <>
     <div className="flex flex-row">
-      <div className="w-[50%] h-[75vh] pr-20 flex flex-col justify-center align-middle">
+      <div className="w-[50%] h-[75vh] pr-20 flex flex-col justify-center items-center">
         <h1 className="font-extrabold text-5xl">Title Landing Page</h1>
         <p className="mt-5">Beschreibung Landing Page. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
         </p>
