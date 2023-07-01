@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #333;
@@ -19,9 +20,34 @@ body {
   background-color: rgb(107, 219, 192)
 }
 
+::-webkit-scrollbar {
+  width: 10px;  
+}
+::-webkit-scrollbar-track {
+  background: rgb(245, 245, 245);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 219, 193, 0.579);
+  border-radius: 10px;
+}
+
+/* Override default prime react component colors */
+li.p-highlight .p-tabview-nav-link {
+  color:#333 !important;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  background-color:rgb(107, 219, 192) !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color:rgb(107, 219, 192) !important;
+}
+
 #eMcyvzsehbA226_to {
   animation: eMcyvzsehbA226_to__to 2100ms linear infinite normal forwards;
 }
+
 @keyframes eMcyvzsehbA226_to__to {
   0% {
     transform: translate(287.210007px, 91.798374px);
