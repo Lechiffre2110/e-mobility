@@ -13,8 +13,8 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex flex-col justify-between w-full px-10 pt-5 bg-white lg:flex-row">
-        <h1 className="text-2xl font-extrabold lg:text-center">
+      <div className="fixed flex flex-col justify-between w-full px-5 pt-5 bg-white lg:px-10 lg:flex-row">
+        <h1 className="pb-3 text-2xl font-extrabold lg:pb-0 lg:text-center">
           Project E-Mobility
         </h1>
 
@@ -59,7 +59,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav className="absolute hidden lg:block lg:relative bg-white w-full pb-5 lg:w-[60%] z-10 top-[10%]">
+        <nav className="fixed hidden lg:block bg-white lg:relative w-full pb-5 lg:w-[60%] z-10 top-14">
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5">
             <li className="duration-300 ease-in w-min group">
               <Link to="/authors">Autoren</Link>
