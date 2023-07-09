@@ -1,5 +1,5 @@
 
-import { Project } from "../components/Project";
+import { Project } from "../components/Project/Project";
 
 export default function Authors() {
 const projects = [

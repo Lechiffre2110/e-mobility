@@ -1,4 +1,4 @@
-import './projects.css'
+import './project.css'
 
 export const  Project = ({ project }) => (
   <div className="project">
