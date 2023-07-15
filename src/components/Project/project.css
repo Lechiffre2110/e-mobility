@@ -1,0 +1,21 @@
+.project {
+  border: 1px solid #000;
+  margin: 20px;
+  padding: 20px;
+}
+
+.authors,
+.professors {
+  margin: 10px 0;
+}
+
+.author,
+.professor {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #f2f2f2;
+}
+h1 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
