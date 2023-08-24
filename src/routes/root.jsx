@@ -6,7 +6,7 @@ export default function root() {
   return (
     <>
       <Navbar />
-      <div className="px-5 pt-20 lg:px-16" id="detail">
+      <div className="px-5 pt-20" id="detail">
         <Outlet />
       </div>
       <Footer />
