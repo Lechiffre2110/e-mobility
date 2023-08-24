@@ -9,9 +9,12 @@ import Blog from "./pages/blog.jsx";
 import Cars from "./pages/cars.jsx";
 import Documentation from "./pages/documentation.jsx";
 import LandingPage from "./pages/landing-page.jsx";
+import DataHub from "./pages/datahub";
 import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,10 @@ const router = createBrowserRouter([
         element: <Documentation />,
       },
       {
+        path: "/datahub",
+        element: <DataHub />,
+      },
+      {
         path: "/",
         element: <LandingPage />,
       },
@@ -45,8 +52,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <PrimeReactProvider>
-      <RouterProvider router={router} />
-    </PrimeReactProvider>
+    <Theme>
+      <PrimeReactProvider>
+        <RouterProvider router={router} />
+      </PrimeReactProvider>
+    </Theme>
   </React.StrictMode>
 );
