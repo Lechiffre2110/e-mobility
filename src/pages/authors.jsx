@@ -21,6 +21,12 @@ const projects = [
         email: "Christopher.Severin@HTW-Berlin.de",
       },
     ],
+    contributors: [
+      {
+        name: "Dominik Rezmer",
+        email: "dominik.rezmer@student.htw-berlin.de",
+      },
+    ]
   },
   // Weitere Projekte können hier hinzugefügt werden
 ];
