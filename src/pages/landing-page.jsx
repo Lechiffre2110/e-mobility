@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Button } from 'primereact/button';
+import InfoSection from "../components/info-section";
 
 function LandingPage(props) {
 
@@ -25,6 +26,7 @@ function LandingPage(props) {
         </svg>
       </div>
       </div>
+      <InfoSection />
     </>
   );
 }
