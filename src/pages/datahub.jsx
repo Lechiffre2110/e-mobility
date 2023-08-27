@@ -2,15 +2,19 @@ import * as Separator from "@radix-ui/react-separator";
 import { useState } from "react";
 import FileUpload from "../components/file-upload";
 import GaugeIcon from "../assets/activity.svg";
-import DataIcon from "../assets/hard-drive.svg";
 import SettingsIcon from "../assets/settings.svg";
 import ContributionIcon from "../assets/git-branch.svg";
 import BugIcon from "../assets/alert-triangle.svg";
+import ClipboardIcon from "../assets/clipboard.svg";
+import UploadIcon from "../assets/upload-cloud.svg";
+import DownloadIcon from "../assets/download-cloud.svg";
+import ChartIcon from "../assets/bar-chart.svg";
 import HubLogo from "../assets/hub-logo.svg";
 import FileDownload from "../components/file-download";
 import Contribution from "../components/contribution";
 import BugReport from "../components/bug-report";
 import Dashboard from "../components/dashboard";
+
 
 const MenuPoints = {
   DASHBOARD: "DASHBOARD",
@@ -35,6 +39,7 @@ export default function DataHub() {
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">Datahub</h2>
           </div>
+          <h3 className="text-xs font-bold">ADMIN</h3>
           <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
             <img className="h-4 mr-2" src={GaugeIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
@@ -42,32 +47,37 @@ export default function DataHub() {
             </h3>
           </div>
 
-          <details className="flex flex-col">
-            <summary className="flex flex-row items-center">
-              <img className="h-4 mr-2" src={DataIcon} />
-              <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-                Daten
-              </h3>
-            </summary>
-            <ul className="flex flex-col gap-4 mt-4 pl-7">
-              <li onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}>
-                <a className="rounded-[3px] inline-flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-                  Daten hochladen
-                </a>
-              </li>
-              <li onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}>
-                <a className="rounded-[3px] inline-flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-                  Daten herunterladen
-                </a>
-              </li>
-              <li onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}>
-                <a className="rounded-[3px] inline-flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-                  Daten anzeigen
-                </a>
-              </li>
-            </ul>
-          </details>
+          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
+            <img className="h-4 mr-2" src={ClipboardIcon} />
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+              Onboarding
+            </h3>
+          </div>
 
+          <h3 className="text-xs font-bold">DATEN</h3>
+
+          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}>
+            <img className="h-4 mr-2" src={UploadIcon} />
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+              Daten hochladen
+            </h3>
+          </div>
+
+          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}>
+            <img className="h-4 mr-2" src={DownloadIcon} />
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+              Daten herunterladen
+            </h3>
+          </div>
+
+          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}>
+            <img className="h-4 mr-2" src={ChartIcon} />
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+              Daten Anzeigen
+            </h3>
+          </div>
+
+          <h3 className="text-xs font-bold">PROJEKT</h3>
           <div
             className="flex flex-row items-center"
             onClick={() =>
