@@ -121,8 +121,8 @@ export default function Dashboard() {
               {bugs.map((bug) => {
                 return (
                   <div className="w-full">
-                    <div className="flex flex-row justify-between py-2">
-                      <p className="max-w-[10%] overflow-hidden whitespace-nowrap overflow-ellipsis">
+                    <div className="flex flex-row items-center justify-between item">
+                      <p className="max-w-[70%] overflow-hidden whitespace-nowrap overflow-ellipsis">
                         {bug.title}
                       </p>
                       <div>
@@ -132,9 +132,6 @@ export default function Dashboard() {
                           description={bug.description}
                           contact={bug.contact}
                         />
-                        <button className="ml-2 bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                          Resolve
-                        </button>
                       </div>
                     </div>
                     <HorizontalSeparator />
