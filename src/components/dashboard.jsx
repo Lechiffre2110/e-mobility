@@ -7,6 +7,7 @@ import UserIcon from "../assets/users.svg";
 import BugIcon from "../assets/alert-triangle.svg";
 import DataIcon from "../assets/file.svg";
 import RequestIcon from "../assets/git-branch.svg";
+import SuggestionIcon from "../assets/message.svg";
 import DataTable from "./data-table";
 
 export default function Dashboard() {
@@ -58,11 +59,11 @@ export default function Dashboard() {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-lg flex items-center px-5 text-gray-700 font-bold border">
+      <h2 className="h-16 text-2xl bg-white w-[97%] mx-[2%] rounded-lg flex items-center px-5 text-gray-700 font-bold border">
         Dashboard
       </h2>
 
-      <div className="flex flex-row gap-3 ml-[2%]">
+      <div className="grid grid-cols-5 gap-3 w-[97%] mx-[2%]">
         <DashboardStat
           title="Mitwirkende"
           value="100"
@@ -82,6 +83,7 @@ export default function Dashboard() {
           icon={RequestIcon}
           order="4"
         />
+        <DashboardStat title="Vorschläge" value="7" icon={SuggestionIcon} order="4" />
       </div>
 
       <div className="grid grid-cols-3 gap-2 ml-[2%]">

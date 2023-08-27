@@ -10,7 +10,7 @@ export default function DashboardStat(props) {
 
   return (
     <>
-      <div className="mt-4 w-[200px] h-[90px] flex flex-col justify-around bg-white border rounded-xl px-3 py-1">
+      <div className="mt-4 w-full h-[90px] flex flex-col justify-around bg-white border rounded-xl px-3 py-1">
         <div className="flex flex-row items-start justify-between w-full">
           <img src={props.icon} className="w-[30px] h-[30px]" />
           <div>
