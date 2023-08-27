@@ -3,21 +3,32 @@ import * as Form from "@radix-ui/react-form";
 import DropdownMenu from "./dropdown-menu";
 
 export default function BugReport() {
-    const [selectedCar, setSelectedCar] = useState("");
+  const [selectedCar, setSelectedCar] = useState("");
 
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
     { name: "Toyota Mirai", value: "Toyota Mirai" },
     { name: "Sonstiges", value: "Sonstiges" },
   ];
-        
+
+  const submitBug = (event) => {
+      event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("model", selectedCar);
+    const res = fetch("http://localhost:5555/bug/add", {
+      method: "POST",
+      body: formData,
+    });
+    //prevent site from reloading
+    console.log(res);
+  };
 
   return (
     <>
       <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
         Bug melden
       </h2>
-      <Form.Root>
+      <Form.Root onSubmit={submitBug}>
         <div className="w-[40%] mt-14 m-auto flex flex-col justify-center bg-white rounded-2xl py-5 items-center">
           <div className="flex flex-col w-[90%] m-auto">
             <Form.Field className="grid mb-[10px]" name="contact">
@@ -38,7 +49,7 @@ export default function BugReport() {
           </div>
 
           <div className="flex flex-col w-[90%] m-auto">
-            <Form.Field className="grid mb-[10px]" name="contact">
+            <Form.Field className="grid mb-[10px]" name="title">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
                   Bug Titel
@@ -56,7 +67,7 @@ export default function BugReport() {
           </div>
 
           <div className="flex flex-col w-[90%] m-auto">
-          <Form.Field className="grid mb-[10px]" name="model">
+            <Form.Field className="grid mb-[10px]" name="model">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
                   Fahrzeug
@@ -78,7 +89,7 @@ export default function BugReport() {
                 />
               </Form.Control>
             </Form.Field>
-            </div>
+          </div>
 
           <div className="flex flex-col w-[90%] m-auto">
             <Form.Field className="grid mb-[10px]" name="description">
