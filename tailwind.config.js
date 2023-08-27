@@ -1,4 +1,4 @@
-const { blackA, mauve, violet, green } = require('@radix-ui/colors');
+const { blackA, mauve, violet, green, gray, red, blue } = require('@radix-ui/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -31,6 +31,9 @@ module.exports = {
         ...mauve,
         ...violet,
         ...green,
+        ...gray,
+        ...red,
+        ...blue,
       },
     },
   },
