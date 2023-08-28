@@ -1,8 +1,22 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import HorizontalSeparator from "./horizontal-separator";
+import axios from "axios";
 
 export default function contributionDialog(props) {
+  const declineRequest = async () => {
+    const res = axios.post("http://localhost:5555/api/decline", {
+      id: props.id,
+    });
+    console.log(res);
+  };
+
+  const acceptRequest = async () => {
+    const res = axios.post("http://localhost:5555/api/approve", {
+      id: props.id,
+    });
+    console.log(res);
+  };
 
   return (
     <>
@@ -19,64 +33,59 @@ export default function contributionDialog(props) {
               Contribution Request
             </Dialog.Title>
             <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
-              {props.name} hat eine Contribution Request gestellt. Nimm sie hier entweder an oder lehne sie ab.
+              {props.name} hat eine Contribution Request gestellt. Nimm sie hier
+              entweder an oder lehne sie ab.
             </Dialog.Description>
             <fieldset className="flex flex-col">
-              <label
-                className="text-mauve11 text-[12px]"
-                htmlFor="name"
-              >
+              <label className="text-mauve11 text-[12px]" htmlFor="name">
                 NAME
               </label>
-              <p
-                className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]"
-              >{props.name}</p>
+              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]">
+                {props.name}
+              </p>
             </fieldset>
             <HorizontalSeparator />
             <fieldset className="flex flex-col">
-              <label
-                className="text-mauve11 text-[12px]"
-                htmlFor="email"
-              >
+              <label className="text-mauve11 text-[12px]" htmlFor="email">
                 EMAIL
               </label>
-              <p
-                className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]"
-              >{props.mail}</p>
+              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]">
+                {props.mail}
+              </p>
             </fieldset>
             <HorizontalSeparator />
             <fieldset className="flex flex-col">
-              <label
-                className="text-mauve11 text-[12px]"
-                htmlFor="description"
-              >
+              <label className="text-mauve11 text-[12px]" htmlFor="description">
                 TÄTIGKEIT
               </label>
-              <p
-                className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]"
-              >{props.description}</p>
+              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 text-[15px]">
+                {props.description}
+              </p>
             </fieldset>
             <HorizontalSeparator />
             <fieldset className="flex flex-col">
-              <label
-                className="text-mauve11 text-[12px]"
-                htmlFor="role"
-              >
+              <label className="text-mauve11 text-[12px]" htmlFor="role">
                 ROLLE
               </label>
-              <p
-                className="text-mauve12 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 text-[15px]"
-              >{props.role}</p>
+              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 text-[15px]">
+                {props.role}
+              </p>
             </fieldset>
             <HorizontalSeparator />
             <div className="mt-[25px] flex justify-end gap-5">
-            <Dialog.Close asChild>
-                <button className="bg-red4 text-red11 hover:bg-red5 focus:shadow-red7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+              <Dialog.Close asChild>
+                <button
+                  className="bg-red4 text-red11 hover:bg-red5 focus:shadow-red7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                  onClick={declineRequest}
+                >
                   Ablehnen
                 </button>
               </Dialog.Close>
               <Dialog.Close asChild>
-                <button className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                <button
+                  className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                  onClick={acceptRequest}
+                >
                   Annehmen
                 </button>
               </Dialog.Close>
@@ -95,5 +104,3 @@ export default function contributionDialog(props) {
     </>
   );
 }
-
-   

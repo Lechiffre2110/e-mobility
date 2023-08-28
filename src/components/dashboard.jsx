@@ -13,43 +13,40 @@ import DataTable from "./data-table";
 export default function Dashboard() {
   const [bugs, setBugs] = useState([]);
   const [requests, setRequests] = useState([]);
-  const sampleContributors = [
-    {
-      name: "Max Mustermann",
-      role: "Student (HTW)",
-      description:
-        "Ich bin ein Student der HTW Berlin und möchte gerne am Projekt mitwirken",
-    },
-    {
-      name: "Max Mustermann",
-      role: "Student (HTW)",
-      description:
-        "Ich bin ein Student der HTW Berlin und möchte gerne am Projekt mitwirken",
-    },
-    {
-      name: "Max Mustermann",
-      role: "Student (HTW)",
-      description:
-        "Ich bin ein Student der HTW Berlin und möchte gerne am Projekt mitwirken",
-    },
-    {
-      name: "Max Mustermann",
-      role: "Student (HTW)",
-      description:
-        "Ich bin ein Student der HTW Berlin und möchte gerne am Projekt mitwirken",
-    },
-  ];
+  const [contributorCount, setContributorCount] = useState(0);
+  const [requestCount, setRequestCount] = useState(0);
+  const [bugCount, setBugCount] = useState(0);
 
   const getBugs = async () => {
     const res = await fetch("http://localhost:5555/bug/get");
     const data = await res.json();
     setBugs(data.data);
+    let count = 0;
+    data.data.forEach((bug) => {
+      if (!bug.resolved) {
+        count++;
+      }
+    }
+    );
+    setBugCount(count);
   };
 
   const getRequests = async () => {
     const res = await fetch("http://localhost:5555/api/get");
     const data = await res.json();
     setRequests(data.data);
+    let countApproved = 0;
+    let countPending = 0;
+    data.data.forEach((request) => {
+      if (request.approved) {
+        countApproved++;
+      } else {
+        countPending++;
+      }
+    }
+    );
+    setContributorCount(countApproved);
+    setRequestCount(countPending);
   };
 
   useEffect(() => {
@@ -66,7 +63,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-5 gap-3 w-[97%] mx-[2%]">
         <DashboardStat
           title="Mitwirkende"
-          value="100"
+          value={contributorCount}
           icon={UserIcon}
           order="1"
         />
@@ -76,22 +73,30 @@ export default function Dashboard() {
           icon={DataIcon}
           order="2"
         />
-        <DashboardStat title="Bugs" value="4" icon={BugIcon} order="3" />
+        <DashboardStat title="Bugs" value={bugCount} icon={BugIcon} order="3" />
         <DashboardStat
           title="Anfragen"
-          value="2"
+          value={requestCount}
           icon={RequestIcon}
           order="4"
         />
-        <DashboardStat title="Vorschläge" value="7" icon={SuggestionIcon} order="4" />
+        <DashboardStat
+          title="Vorschläge"
+          value="7"
+          icon={SuggestionIcon}
+          order="4"
+        />
       </div>
 
-      <div className="grid grid-cols-3 gap-2 ml-[2%]">
+      <div className="grid grid-cols-3 gap-2 ml-[2%] w-[97%]">
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
             <div className="flex flex-col justify-between w-full">
               {requests.map((request) => {
+                if (request.approved) {
+                  return;
+                }
                 return (
                   <div>
                     <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center">
@@ -100,6 +105,7 @@ export default function Dashboard() {
                         <h3 className="ml-1 text-gray-500">{request.role}</h3>
                       </div>
                       <ContributionDialog
+                        id={request._id}
                         name={request.name}
                         mail={request.email}
                         role={request.role}
@@ -119,6 +125,10 @@ export default function Dashboard() {
             <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
             <div className="flex flex-col text-[14px] font-semibold items-center">
               {bugs.map((bug) => {
+                if (bug.resolved) {
+                  return;
+                }
+                  
                 return (
                   <div className="w-full">
                     <div className="flex flex-row items-center justify-between item">
@@ -127,12 +137,36 @@ export default function Dashboard() {
                       </p>
                       <div>
                         <BugDialog
+                          id={bug._id}
                           title={bug.title}
                           model={bug.model}
                           description={bug.description}
                           contact={bug.contact}
                         />
                       </div>
+                    </div>
+                    <HorizontalSeparator />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
+          <div className="w-full px-5">
+            <h2 className="mb-4 font-bold text-gray-500 text-md">Onboarding Requests</h2>
+            <div className="flex flex-col justify-between w-full">
+              {requests.map((request) => {
+                return (
+                  <div>
+                    <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center">
+                      <div className="flex">
+                        <h3>{request.name}</h3>
+                      </div>
+                      <button className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                        Senden
+                      </button>
                     </div>
                     <HorizontalSeparator />
                   </div>
