@@ -5,17 +5,21 @@ import axios from "axios";
 
 export default function contributionDialog(props) {
   const declineRequest = async () => {
-    const res = axios.post("http://localhost:5555/api/decline", {
+    const res = await axios.post("http://localhost:5555/api/decline", {
       id: props.id,
     });
-    console.log(res);
+    if (res.status === 200) {
+      props.reload();
+    }
   };
 
   const acceptRequest = async () => {
-    const res = axios.post("http://localhost:5555/api/approve", {
+    const res = await axios.post("http://localhost:5555/api/approve", {
       id: props.id,
     });
-    console.log(res);
+    if (res.status === 200) {
+      props.reload();
+    }
   };
 
   return (

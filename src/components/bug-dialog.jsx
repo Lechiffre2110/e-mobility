@@ -10,10 +10,12 @@ const [open, setOpen] = useState(false);
 
   const resolveBug = async () => {
     console.log(props.id);
-    const res = axios.post("http://localhost:5555/bug/resolve", {
+    const res = await axios.post("http://localhost:5555/bug/resolve", {
       id: props.id,
     });
-    console.log(res);
+    if (res.status === 200) {
+      props.reload();
+    }
   };
 
   return (
