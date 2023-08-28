@@ -9,13 +9,16 @@ import DataIcon from "../assets/file.svg";
 import RequestIcon from "../assets/git-branch.svg";
 import SuggestionIcon from "../assets/message.svg";
 import DataTable from "./data-table";
+import axios from "axios";
 
 export default function Dashboard() {
   const [bugs, setBugs] = useState([]);
   const [requests, setRequests] = useState([]);
+  const [onboardingRequests, setOnboardingRequests] = useState([]);
   const [contributorCount, setContributorCount] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
   const [bugCount, setBugCount] = useState(0);
+  const [pageReload, setPageReload] = useState(false);
 
   const getBugs = async () => {
     const res = await fetch("http://localhost:5555/bug/get");
@@ -26,8 +29,7 @@ export default function Dashboard() {
       if (!bug.resolved) {
         count++;
       }
-    }
-    );
+    });
     setBugCount(count);
   };
 
@@ -43,16 +45,34 @@ export default function Dashboard() {
       } else {
         countPending++;
       }
-    }
-    );
+    });
     setContributorCount(countApproved);
     setRequestCount(countPending);
+  };
+
+  const getOnboardingRequests = async () => {
+    const res = await fetch("http://localhost:5555/api/onboarding-requests");
+    const data = await res.json();
+    setOnboardingRequests(data.data);
+  };
+
+  const acceptOnboardingRequest = async (id) => {
+    const res = await axios.post("http://localhost:5555/api/accept", {
+      id: id,
+    });
+    console.log(res);
+    setPageReload(!pageReload);
+  };
+
+  const reload = () => {
+    setPageReload(!pageReload);
   };
 
   useEffect(() => {
     getBugs();
     getRequests();
-  }, []);
+    getOnboardingRequests();
+  }, [pageReload]);
 
   return (
     <>
@@ -93,6 +113,13 @@ export default function Dashboard() {
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
             <div className="flex flex-col justify-between w-full">
+              {requestCount === 0 && (
+                <div className="flex flex-col items-center justify-center">
+                  <h3 className="text-[14px] font-semibold text-gray-500">
+                    Keine Anfragen vorhanden
+                  </h3>
+                </div>
+              )}
               {requests.map((request) => {
                 if (request.approved) {
                   return;
@@ -110,6 +137,7 @@ export default function Dashboard() {
                         mail={request.email}
                         role={request.role}
                         description={request.description}
+                        reload={reload}
                       />
                     </div>
                     <HorizontalSeparator />
@@ -124,11 +152,16 @@ export default function Dashboard() {
           <div className="w-full">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
             <div className="flex flex-col text-[14px] font-semibold items-center">
+              {bugCount === 0 && (
+                <div className="flex flex-col items-center justify-center">
+                  <h3 className="text-gray-500">Keine Bugs vorhanden</h3>
+                </div>
+              )}
               {bugs.map((bug) => {
                 if (bug.resolved) {
                   return;
                 }
-                  
+
                 return (
                   <div className="w-full">
                     <div className="flex flex-row items-center justify-between item">
@@ -142,6 +175,7 @@ export default function Dashboard() {
                           model={bug.model}
                           description={bug.description}
                           contact={bug.contact}
+                          reload={reload}
                         />
                       </div>
                     </div>
@@ -155,16 +189,28 @@ export default function Dashboard() {
 
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
           <div className="w-full px-5">
-            <h2 className="mb-4 font-bold text-gray-500 text-md">Onboarding Requests</h2>
+            <h2 className="mb-4 font-bold text-gray-500 text-md">
+              Onboarding Requests
+            </h2>
             <div className="flex flex-col justify-between w-full">
-              {requests.map((request) => {
+              {onboardingRequests.length === 0 && (
+                <div className="flex flex-col items-center justify-center">
+                  <h3 className="text-[14px] font-semibold text-gray-500">
+                    Keine Anfragen vorhanden
+                  </h3>
+                </div>
+              )}
+              {onboardingRequests.map((request) => {
                 return (
                   <div>
                     <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center">
                       <div className="flex">
                         <h3>{request.name}</h3>
                       </div>
-                      <button className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                      <button
+                        className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                        onClick={() => acceptOnboardingRequest(request._id)}
+                      >
                         Senden
                       </button>
                     </div>
