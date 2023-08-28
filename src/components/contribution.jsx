@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "primereact/button";
 import * as Form from "@radix-ui/react-form";
 import DropdownMenu from "./dropdown-menu";
+import OnboardingDialog from "./onboarding-dialog";
 
 export default function Contribution() {
 
@@ -26,9 +27,12 @@ export default function Contribution() {
     
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
+    <div className="h-16  bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between">
+      <h2 className="text-2xl">
         Mitwirkung beantragen
       </h2>
+      <OnboardingDialog />
+      </div>
       <p className="my-6 text-center">
         Hier haben Sie die Möglichkeit, sich für eine Mitwirkung am Projekt zu bewerben <br />
         Dies können Sie entweder als Student der HTW Berlin oder als externer Mitwirkender tun, falls Sie einen Beitrag zum Projekt geleistet haben
