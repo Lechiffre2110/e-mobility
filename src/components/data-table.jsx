@@ -4,68 +4,78 @@ import axios from "axios";
 
 export default function DataTable(props) {
   const BASE_URL = "http://localhost:5555/api";
-    const cars = [
-        { name: "Toyota Mirai", value: "Toyota Mirai" },
-        { name: "VW ID.3", value: "VW ID.3" },
-        { name: "Sonstiges", value: "other" },
-      ];
-      
-      const [selectedCar, setSelectedCar] = useState("");
-      const [startDate, setStartDate] = useState("");
-      const [endDate, setEndDate] = useState("");
-      const [data, setData] = useState([]);
-      const [filteredData, setFilteredData] = useState([]);
+  const cars = [
+    { name: "Toyota Mirai", value: "Toyota Mirai" },
+    { name: "VW ID.3", value: "VW ID.3" },
+    { name: "Sonstiges", value: "other" },
+  ];
 
-      const fetchData = async () => {
-          try {
-              const response = await axios.get(`${BASE_URL}/data`)
-              setData(response.data.data);
-              setFilteredData(response.data.data);
-          } catch (error) {
-              console.error("Error fetching data:", error);
-          }
-      };
-    
-      useEffect(() => {
-        fetchData();
-    }, []);
-    
-      useEffect(() => {
-        if (!filteredData && !data) return; 
-        
-        let tempData = data;
-        console.log(tempData);
-    
-        if (selectedCar && selectedCar !== "other") {
-          tempData = tempData.filter((d) => d.model === selectedCar);
-        }
-    
-        if (startDate) {
-          tempData = tempData.filter((d) => new Date(d.uploadDate) >= new Date(startDate));
-        }
-    
-        if (endDate) {
-          tempData = tempData.filter((d) => new Date(d.uploadDate) <= new Date(endDate));
-        }
-    
-        setFilteredData(tempData);
-      }, [selectedCar, startDate, endDate, filteredData]);
-    
-      const handleFilter = () => {
-        setFilteredData(filteredData);
-      };
-    
-      function downloadFile(id) {
-        console.log(id);
-        const downloadUrl = `${BASE_URL}/data/download/${id}`;
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+  const [selectedCar, setSelectedCar] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/data`);
+      setData(response.data.data);
+      setFilteredData(response.data.data);
+      let counter = 0;
+      response.data.data.forEach((data) => {
+        counter++;
+      });
+      if (props.setDataCount) {
+        props.setDataCount(counter);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!filteredData && !data) return;
+
+    let tempData = data;
+    console.log(tempData);
+
+    if (selectedCar && selectedCar !== "other") {
+      tempData = tempData.filter((d) => d.model === selectedCar);
     }
 
-    
+    if (startDate) {
+      tempData = tempData.filter(
+        (d) => new Date(d.uploadDate) >= new Date(startDate)
+      );
+    }
+
+    if (endDate) {
+      tempData = tempData.filter(
+        (d) => new Date(d.uploadDate) <= new Date(endDate)
+      );
+    }
+
+    setFilteredData(tempData);
+  }, [selectedCar, startDate, endDate, filteredData]);
+
+  const handleFilter = () => {
+    setFilteredData(filteredData);
+  };
+
+  function downloadFile(id) {
+    console.log(id);
+    const downloadUrl = `${BASE_URL}/data/download/${id}`;
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   return (
     <>
       <div className="rounded-2xl w-[97%] ml-[2%] bg-white h-[74%] px-[3%] py-[2%]">
@@ -121,43 +131,44 @@ export default function DataTable(props) {
                 Beschreibung
               </th>
               <th className="px-5 py-3 font-bold text-gray-700">Download</th>
-              {
-                props.isAdmin && <th className="px-5 py-3 font-bold text-gray-700">Löschen</th>
-              }
+              {props.isAdmin && (
+                <th className="px-5 py-3 font-bold text-gray-700">Löschen</th>
+              )}
             </tr>
           </thead>
         </table>
         <div className="overflow-y-auto max-h-[250px]">
           <table className="w-full">
             <tbody>
-              {filteredData && filteredData.map((data) => (
-                <tr
-                  key={data.id}
-                  className="border-b border-gray-200 hover:bg-gray-100"
-                >
-                  <td className="px-5 py-3">{data.uploadDate}</td>
-                  <td className="px-5 py-3">{data.model}</td>
-                  <td className="px-5 py-3">{data.description}</td>
-                  <td className="px-5 py-3">
-                    <button
-                      className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7"
-                      onClick={() => downloadFile(data.id)}
-                    >
-                      Herunterladen
-                    </button>
-                  </td>
-                    {
-                        props.isAdmin && <td className="px-5 py-3">
+              {filteredData &&
+                filteredData.map((data) => (
+                  <tr
+                    key={data.id}
+                    className="border-b border-gray-200 hover:bg-gray-100"
+                  >
+                    <td className="px-5 py-3">{data.uploadDate}</td>
+                    <td className="px-5 py-3">{data.model}</td>
+                    <td className="px-5 py-3">{data.description}</td>
+                    <td className="px-5 py-3">
+                      <button
+                        className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7"
+                        onClick={() => downloadFile(data.id)}
+                      >
+                        Herunterladen
+                      </button>
+                    </td>
+                    {props.isAdmin && (
+                      <td className="px-5 py-3">
                         <button
-                            className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7"
-                            onClick={() => props.deleteData(data.id)}
+                          className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7"
+                          onClick={() => props.deleteData(data.id)}
                         >
-                            Löschen
+                          Löschen
                         </button>
-                        </td>
-                    }
-                </tr>
-              ))}
+                      </td>
+                    )}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
