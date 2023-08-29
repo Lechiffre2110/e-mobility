@@ -41,30 +41,27 @@ export default function DataTable(props) {
     if (!filteredData && !data) return;
 
     let tempData = data;
-    console.log(tempData);
 
     if (selectedCar && selectedCar !== "other") {
       tempData = tempData.filter((d) => d.model === selectedCar);
     }
-
+  
     if (startDate) {
-      tempData = tempData.filter(
-        (d) => new Date(d.uploadDate) >= new Date(startDate)
-      );
+      tempData = tempData.filter((d) => convertToDateObject(d.uploadDate) >= convertToDateObject(startDate));
     }
 
     if (endDate) {
-      tempData = tempData.filter(
-        (d) => new Date(d.uploadDate) <= new Date(endDate)
-      );
+      tempData = tempData.filter((d) => convertToDateObject(d.uploadDate) <= convertToDateObject(endDate));
     }
 
     setFilteredData(tempData);
-  }, [selectedCar, startDate, endDate, filteredData]);
+  }, [selectedCar, startDate, endDate]);
 
-  const handleFilter = () => {
-    setFilteredData(filteredData);
-  };
+  // Converts "dd.mm.yyyy" to "yyyy-mm-dd"
+  function convertToDateObject(dateString) {
+    const [day, month, year] = dateString.split('.');
+    return new Date(`${year}-${month}-${day}`);
+  }
 
   function downloadFile(id) {
     const downloadUrl = `${BASE_URL}/data/download/${id}`;
