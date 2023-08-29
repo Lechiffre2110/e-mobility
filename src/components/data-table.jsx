@@ -115,12 +115,6 @@ export default function DataTable(props) {
               </div>
             </div>
           </div>
-          <button
-            className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7 ml-3 "
-            onClick={handleFilter}
-          >
-            Filter
-          </button>
         </div>
         <table className="w-full mb-3">
           <thead>
