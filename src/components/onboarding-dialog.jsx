@@ -8,10 +8,12 @@ import HorizontalSeparator from "./horizontal-separator";
 export default function OnboardingDialog() {
   const [open, setOpen] = useState(false);
 
-  function submitForm(event) {
+  async function submitForm(event) {
+    const BASE_URL = "http://localhost:5555/api";
+    
     event.preventDefault();
     const formData = new FormData(event.target);
-    const res = axios.post("http://localhost:5555/api/onboard", {
+    const res = await axios.post(`${BASE_URL}/onboarding`, {
       name: formData.get("name"),
       email: formData.get("email"),
     });

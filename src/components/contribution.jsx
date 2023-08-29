@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import * as Form from "@radix-ui/react-form";
 import DropdownMenu from "./dropdown-menu";
 import OnboardingDialog from "./onboarding-dialog";
+import axios from "axios";
 
 export default function Contribution() {
 
@@ -14,16 +15,20 @@ export default function Contribution() {
 
     const [selectedRolle, setSelectedRolle] = useState("");
     
-    function submitForm(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        formData.append("role", selectedRolle);
-        const res = fetch("http://localhost:5555/api/add", {
-            method: "POST",
-            body: formData,
-        });
-        console.log(res);
-    }
+    async function submitForm(event) {
+      const BASE_URL = "http://localhost:5555/api";
+      event.preventDefault();
+      
+      const formData = new FormData(event.target);
+      formData.append("role", selectedRolle);
+  
+      try {
+          const response = await axios.post(`${BASE_URL}/contributors`, formData);
+          console.log(response.data);
+      } catch (error) {
+          console.error("Error submitting form:", error);
+      }
+  }  
     
   return (
     <>

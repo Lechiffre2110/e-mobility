@@ -6,6 +6,7 @@ import * as Toast from "@radix-ui/react-toast";
 import * as Select from "@radix-ui/react-select";
 import classnames from "classnames";
 import DropdownMenu from "./dropdown-menu";
+import axios from "axios";
 
 export default function fileUpload() {
   const [open, setOpen] = useState(false);
@@ -39,22 +40,18 @@ export default function fileUpload() {
   }
 
   async function uploadData(formData) {
+    const BASE_URL = "http://localhost:5555/api";
     try {
-      const response = await fetch("http://localhost:5555/hub/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      
+      const res = await axios.post(`${BASE_URL}/data`, formData);
       //TODO: remove delay in production
       setTimeout(() => {
         setOpen(false);
-        setToastDescription(data.message)
+        setToastDescription(res.message)
         toggleToast("Datei wurde hochgeladen", true);
-      }, 2500);
+      }, 2000);
     } catch (error) {
       console.error("Error uploading data:", error);
-      setToastDescription(data.message)
+      setToastDescription(res.message)
       toggleToast("Fehler beim Hochladen", true);
     }
   }

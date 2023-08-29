@@ -19,50 +19,55 @@ export default function Dashboard() {
   const [requestCount, setRequestCount] = useState(0);
   const [bugCount, setBugCount] = useState(0);
   const [pageReload, setPageReload] = useState(false);
+  const BASE_URL = "http://localhost:5555/api";
 
   const getBugs = async () => {
-    const res = await fetch("http://localhost:5555/bug/get");
-    const data = await res.json();
-    setBugs(data.data);
-    let count = 0;
-    data.data.forEach((bug) => {
-      if (!bug.resolved) {
-        count++;
-      }
-    });
-    setBugCount(count);
-  };
+    try {
+        const response = await axios.get(`${BASE_URL}/bugs`);
+        const data = response.data;
+        setBugs(data.data);
 
-  const getRequests = async () => {
-    const res = await fetch("http://localhost:5555/api/get");
-    const data = await res.json();
-    setRequests(data.data);
-    let countApproved = 0;
-    let countPending = 0;
-    data.data.forEach((request) => {
-      if (request.approved) {
-        countApproved++;
-      } else {
-        countPending++;
-      }
-    });
-    setContributorCount(countApproved);
-    setRequestCount(countPending);
-  };
+        const unresolvedBugsCount = data.data ? data.data.filter(bug => !bug.resolved).length : 0;
+        setBugCount(unresolvedBugsCount);
+    } catch (error) {
+        console.error("Error fetching bugs:", error);
+    }
+};
 
-  const getOnboardingRequests = async () => {
-    const res = await fetch("http://localhost:5555/api/onboarding-requests");
-    const data = await res.json();
-    setOnboardingRequests(data.data);
-  };
+const getRequests = async () => {
+  try {
+      const response = await axios.get(`${BASE_URL}/contributors`);
+      const data = response.data;
 
-  const acceptOnboardingRequest = async (id) => {
-    const res = await axios.post("http://localhost:5555/api/accept", {
-      id: id,
-    });
-    console.log(res);
+      setRequests(data.data);
+
+      const countApproved = data.data ? data.data.filter(request => request.approved).length : 0;
+      const countPending = data.data ? data.data.filter(request => !request.approved).length : 0;
+
+      setContributorCount(countApproved);
+      setRequestCount(countPending);
+  } catch (error) {
+      console.error("Error fetching requests:", error);
+  }
+};
+
+const getOnboardingRequests = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/onboarding`);
+    setOnboardingRequests(response.data.data);
+  } catch (error) {
+    console.error("Error fetching onboarding requests:", error);
+  }
+};
+
+const acceptOnboardingRequest = async (id) => {
+  try {
+    await axios.put(`${BASE_URL}/onboarding/${id}/accept`);
     setPageReload(!pageReload);
-  };
+  } catch (error) {
+    console.error("Error accepting onboarding request:", error);
+  }
+};
 
   const reload = () => {
     setPageReload(!pageReload);
@@ -120,7 +125,7 @@ export default function Dashboard() {
                   </h3>
                 </div>
               )}
-              {requests.map((request) => {
+              {requests && requests.map((request) => {
                 if (request.approved) {
                   return;
                 }
@@ -157,7 +162,7 @@ export default function Dashboard() {
                   <h3 className="text-gray-500">Keine Bugs vorhanden</h3>
                 </div>
               )}
-              {bugs.map((bug) => {
+              {bugs && bugs.map((bug) => {
                 if (bug.resolved) {
                   return;
                 }
@@ -193,14 +198,14 @@ export default function Dashboard() {
               Onboarding Requests
             </h2>
             <div className="flex flex-col justify-between w-full">
-              {onboardingRequests.length === 0 && (
+              {onboardingRequests && onboardingRequests.length === 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="text-[14px] font-semibold text-gray-500">
                     Keine Anfragen vorhanden
                   </h3>
                 </div>
               )}
-              {onboardingRequests.map((request) => {
+              {onboardingRequests && onboardingRequests.map((request) => {
                 return (
                   <div>
                     <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center">

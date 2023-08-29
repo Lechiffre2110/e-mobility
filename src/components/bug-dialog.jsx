@@ -8,15 +8,15 @@ export default function bugDialog(props) {
 const [open, setOpen] = useState(false);
 
 
-  const resolveBug = async () => {
-    console.log(props.id);
-    const res = await axios.post("http://localhost:5555/bug/resolve", {
-      id: props.id,
-    });
-    if (res.status === 200) {
-      props.reload();
-    }
-  };
+const resolveBug = async () => {
+  const BASE_URL = "http://localhost:5555/api";
+  try {
+    await axios.put(`${BASE_URL}/bugs/${props.id}/resolve`);
+    props.reload();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   return (
     <>

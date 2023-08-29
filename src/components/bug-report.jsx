@@ -11,16 +11,22 @@ export default function BugReport() {
     { name: "Sonstiges", value: "Sonstiges" },
   ];
 
-  const submitBug = (event) => {
-      event.preventDefault();
+  const submitBug = async (event) => {
+    const BASE_URL = "http://localhost:5555/api";
+    event.preventDefault();
+    
     const formData = new FormData(event.target);
     formData.append("model", selectedCar);
-    const res = fetch("http://localhost:5555/bug/add", {
-      method: "POST",
-      body: formData,
-    });
-    //prevent site from reloading
-    console.log(res);
+
+    try {
+      //axios not working here
+      await fetch(`${BASE_URL}/bugs`, {
+        method: "POST",
+        body: formData,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

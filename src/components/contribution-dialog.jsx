@@ -4,21 +4,23 @@ import HorizontalSeparator from "./horizontal-separator";
 import axios from "axios";
 
 export default function contributionDialog(props) {
+  const BASE_URL = "http://localhost:5555/api";
+  
   const declineRequest = async () => {
-    const res = await axios.post("http://localhost:5555/api/decline", {
-      id: props.id,
-    });
-    if (res.status === 200) {
-      props.reload();
+    try {
+      await axios.delete(`${BASE_URL}/contributors/${props.id}/decline`);
+    } catch (error) {
+      console.error("Error declining request:", error);
     }
+    props.reload();
   };
 
   const acceptRequest = async () => {
-    const res = await axios.post("http://localhost:5555/api/approve", {
-      id: props.id,
-    });
-    if (res.status === 200) {
+    try {
+      await axios.put(`${BASE_URL}/contributors/${props.id}/approve`);
       props.reload();
+    } catch (error) {
+      console.error("Error accepting request:", error);
     }
   };
 

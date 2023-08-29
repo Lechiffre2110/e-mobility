@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import DropdownMenu from "./dropdown-menu";
+import axios from "axios";
 
 export default function DataTable(props) {
+  const BASE_URL = "http://localhost:5555/api";
     const cars = [
         { name: "Toyota Mirai", value: "Toyota Mirai" },
         { name: "VW ID.3", value: "VW ID.3" },
@@ -13,16 +15,20 @@ export default function DataTable(props) {
       const [endDate, setEndDate] = useState("");
       const [data, setData] = useState([]);
       const [filteredData, setFilteredData] = useState([]);
+
+      const fetchData = async () => {
+          try {
+              const response = await axios.get(`${BASE_URL}/data`)
+              setData(response.data.data);
+              setFilteredData(response.data.data);
+          } catch (error) {
+              console.error("Error fetching data:", error);
+          }
+      };
     
       useEffect(() => {
-        const fetchData = async () => {
-          let res = await fetch("http://localhost:5555/hub/data");
-          let data = await res.json();
-          setData(data.data);
-          setFilteredData(data.data);
-        };
         fetchData();
-      }, []);
+    }, []);
     
       useEffect(() => {
         if (!filteredData && !data) return; 
@@ -51,7 +57,7 @@ export default function DataTable(props) {
     
       function downloadFile(id) {
         console.log(id);
-        const downloadUrl = `http://localhost:5555/hub/download/${id}`;
+        const downloadUrl = `${BASE_URL}/data/download/${id}`;
         const a = document.createElement('a');
         a.href = downloadUrl;
         document.body.appendChild(a);
@@ -124,7 +130,7 @@ export default function DataTable(props) {
         <div className="overflow-y-auto max-h-[250px]">
           <table className="w-full">
             <tbody>
-              {filteredData.map((data) => (
+              {filteredData && filteredData.map((data) => (
                 <tr
                   key={data.id}
                   className="border-b border-gray-200 hover:bg-gray-100"
