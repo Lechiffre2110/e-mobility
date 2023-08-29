@@ -114,11 +114,11 @@ const acceptOnboardingRequest = async (id) => {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-2 ml-[2%] w-[97%]">
+      <div className="grid grid-cols-3 gap-2 ml-[2%] w-[97%] overflow-hidden">
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
-            <div className="flex flex-col justify-between w-full">
+            <div className="flex flex-col justify-between w-full max-h-[250px] overflow-y-auto">
               {requestCount === 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="text-[14px] font-semibold text-gray-500">
@@ -132,7 +132,7 @@ const acceptOnboardingRequest = async (id) => {
                 }
                 return (
                   <div>
-                    <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center">
+                    <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">
                       <div className="flex">
                         <h3>{request.name} -</h3>
                         <h3 className="ml-1 text-gray-500">{request.role}</h3>
@@ -157,7 +157,7 @@ const acceptOnboardingRequest = async (id) => {
         <div className="ml-[2%] flex flex-row justify-around bg-white rounded-xl py-5 px-5 mt-3 h-auto">
           <div className="w-full">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
-            <div className="flex flex-col text-[14px] font-semibold items-center">
+            <div className="flex flex-col text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">
               {bugCount === 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="text-gray-500">Keine Bugs vorhanden</h3>
@@ -170,7 +170,7 @@ const acceptOnboardingRequest = async (id) => {
 
                 return (
                   <div className="w-full">
-                    <div className="flex flex-row items-center justify-between item">
+                    <div className="flex flex-row items-center justify-between py-2">
                       <p className="max-w-[70%] overflow-hidden whitespace-nowrap overflow-ellipsis">
                         {bug.title}
                       </p>
