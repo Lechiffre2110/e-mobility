@@ -67,8 +67,16 @@ export default function DataTable(props) {
   };
 
   function downloadFile(id) {
-    console.log(id);
     const downloadUrl = `${BASE_URL}/data/download/${id}`;
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function downloadAllFiles() {
+    const downloadUrl = `${BASE_URL}/data/download`;
     const a = document.createElement("a");
     a.href = downloadUrl;
     document.body.appendChild(a);
@@ -166,7 +174,10 @@ export default function DataTable(props) {
             </tbody>
           </table>
         </div>
-        <button className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7 mt-5">
+        <button
+          className="px-[10px] text-white bg-violet9 flex-shrink-0 flex-grow-0 basis-auto h-[25px] rounded inline-flex text-[13px] leading-none items-center justify-center outline-none hover:bg-violet10 focus:relative focus:shadow-[0_0_0_2px] focus:shadow-violet7 mt-5"
+          onClick={downloadAllFiles}
+        >
           Alle Datensätze herunterladen
         </button>
       </div>
