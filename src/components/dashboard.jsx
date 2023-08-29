@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [contributorCount, setContributorCount] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
   const [bugCount, setBugCount] = useState(0);
+  const [dataCount, setDataCount] = useState(0);
   const [pageReload, setPageReload] = useState(false);
   const BASE_URL = "http://localhost:5555/api";
 
@@ -94,7 +95,7 @@ const acceptOnboardingRequest = async (id) => {
         />
         <DashboardStat
           title="Datensätze"
-          value="10"
+          value={dataCount}
           icon={DataIcon}
           order="2"
         />
@@ -228,7 +229,7 @@ const acceptOnboardingRequest = async (id) => {
         </div>
       </div>
       <div className="mt-4">
-        <DataTable isAdmin={true} />
+        <DataTable isAdmin={true} setDataCount={setDataCount}/>
       </div>
     </>
   );
