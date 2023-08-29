@@ -21,5 +21,14 @@ export const  Project = ({ project }) => (
         </div>
       ))}
     </div>
+    <div className="contributors">
+      <h2>Mitwirkende:</h2>
+      {project.contributors.map((contributor, index) => (
+        <div key={index} className="contributor">
+          <p>{contributor.name}</p>
+          <p>{contributor.email}</p>
+        </div>
+      ))}
+    </div>
   </div>
 );
