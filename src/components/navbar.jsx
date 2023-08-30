@@ -99,7 +99,7 @@ export default function Navbar() {
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
-            <li className="px-5 rounded-full w-max green-background hover:bg-emerald-500">
+            <li className="px-5 rounded-full w-max bg-[#1E1F22] text-white hover:bg-blackA11">
               <Link
                 className="font-semibold "
                 to="/datahub"
