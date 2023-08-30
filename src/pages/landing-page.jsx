@@ -13,8 +13,8 @@ function LandingPage(props) {
 
   return (
     <>
-    <div className="flex flex-col text-center lg:flex-row">
-      <div className="w-full lg:w-[50%] lg:h-[75vh] lg:pr-20 flex flex-col justify-center items-center">
+    <div className="flex flex-col-reverse text-center lg:flex-row">
+      <div className="w-full h-full mb-5 lg:w-[50%] lg:h-[75vh] lg:pr-20 flex flex-col justify-center items-center">
         <h1 className="mt-6 text-4xl font-extrabold lg:text-5xl">Projekt E-Mobility</h1>
         <p className="mt-3 mb-4 lg:mt-5">Ein automatisiertes Messsystem zur Analyse von Fahrzeugdaten alternativer Antriebsarten.
         </p>
