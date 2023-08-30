@@ -1,34 +1,34 @@
-import './project.css'
+import ContributorList from "../contributor-list";
+import HorizontalSeparator from "../horizontal-separator";
+import "./project.css";
 
-export const  Project = ({ project }) => (
-  <div className="project">
-    <h1>{project.name}</h1>
+export const Project = ({ project }) => (
+  <div className="">
+    <h1 className="text-3xl text-[#333]">Contributors</h1>
+    <HorizontalSeparator />
     <div className="authors">
-      <h2>Autor*innen:</h2>
-      {project.authors.map((author, index) => (
-        <div key={index} className="author">
-          <p>{author.name}</p>
-          <p>{author.email}</p>
-        </div>
-      ))}
+      <ContributorList
+        title="Autor"
+        contributors={project.authors}
+        color="red"
+      />
     </div>
+    <HorizontalSeparator />
     <div className="professors">
-      <h2>Professor*innen:</h2>
-      {project.professors.map((professor, index) => (
-        <div key={index} className="professor">
-          <p>{professor.name}</p>
-          <p>{professor.email}</p>
-        </div>
-      ))}
+      <ContributorList
+        title="Professoren"
+        contributors={project.professors}
+        color="violet"
+      />
     </div>
+    <HorizontalSeparator />
     <div className="contributors">
-      <h2>Mitwirkende:</h2>
-      {project.contributors.map((contributor, index) => (
-        <div key={index} className="contributor">
-          <p>{contributor.name}</p>
-          <p>{contributor.email}</p>
-        </div>
-      ))}
+      <ContributorList
+        title="Studenten"
+        contributors={project.contributors}
+        color="green"
+      />
     </div>
+    <HorizontalSeparator />
   </div>
 );
