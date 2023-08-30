@@ -21,17 +21,6 @@ body {
   background-color: rgb(107, 219, 192)
 }
 
-::-webkit-scrollbar {
-  width: 10px;  
-}
-::-webkit-scrollbar-track {
-  background: rgb(245, 245, 245);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(107, 219, 193, 0.579);
-  border-radius: 10px;
-}
-
 .closed-menu {
   opacity: 0;
   transform: translateX(-150);
