@@ -66,17 +66,21 @@ export default function Navbar() {
         </div>
 
         <nav
-          className={`pl-5 pt-10 lg:pt-0 border-b-4 border-[#6bdbc1] lg:border-none ${
-            menuOpen ? "" : "hidden"
-          } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white`}
+          className={`bg-blue3 pl-5 pt-10 lg:pt-0 border-b-4 border-[#6bdbc1] lg:border-none ${
+            menuOpen ? "open-menu" : "closed-menu"
+          } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white lg:opacity-100`}
         >
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5 ">
             <li className="duration-300 ease-in w-min group">
-              <Link to="/authors" onClick={handleLinkClick}>Autoren</Link>
+              <Link to="/authors" onClick={handleLinkClick}>
+                Autoren
+              </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
-              <Link to="/cars" onClick={handleLinkClick}>Fahrzeuge</Link>
+              <Link to="/cars" onClick={handleLinkClick}>
+                Fahrzeuge
+              </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
@@ -90,11 +94,17 @@ export default function Navbar() {
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
-              <Link to="/blog" onClick={handleLinkClick}>Blog</Link>
+              <Link to="/blog" onClick={handleLinkClick}>
+                Blog
+              </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="px-5 rounded-full w-max green-background hover:bg-emerald-500">
-              <Link className="font-semibold " to="/datahub" onClick={handleLinkClick}>
+              <Link
+                className="font-semibold "
+                to="/datahub"
+                onClick={handleLinkClick}
+              >
                 Data Hub
               </Link>
             </li>
