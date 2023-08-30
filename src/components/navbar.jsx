@@ -13,10 +13,13 @@ export default function Navbar() {
 
   return (
     <>
-      <div id="navbar" className="z-[20] h-[4rem] fixed flex flex-col justify-between w-full px-5 pt-5 lg:px-10 lg:flex-row bg-white">
+      <div id="navbar" className="z-[20] h-[4rem] fixed flex flex-col justify-between w-full px-5 pt-5 lg:px-5 lg:flex-row bg-white">
+        <div className="flex gap-2">
+        <img src={Logo} className="hidden w-8 h-8 lg:block" />
         <h1 className="hidden pb-3 text-2xl font-extrabold lg:block lg:pb-0 lg:text-center">
           Project E-Mobility
         </h1>
+        </div>
         <img src={Logo} className="w-8 h-8 lg:hidden" />
 
         <div className="lg:hidden">
