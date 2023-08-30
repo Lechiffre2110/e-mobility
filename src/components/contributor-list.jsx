@@ -64,7 +64,7 @@ export default function ContributorList(props) {
             <div className="flex flex-col items-start">
               <p className="font-bold">{contributor.name}</p>
               <p
-                className={`px-2 border rounded-full ${colorClasses.border} ${colorClasses.text} ${colorClasses.bg} text-[12px]`}
+                className={`mt-1 px-2 border rounded-full ${colorClasses.border} ${colorClasses.text} ${colorClasses.bg} text-[12px]`}
               >
                 {contributor.role}
               </p>
