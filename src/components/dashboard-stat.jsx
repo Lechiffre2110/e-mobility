@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import * as Progress from "@radix-ui/react-progress";
 export default function DashboardStat(props) {
-  const [progress, setProgress] = useState(10);
+  const [progress, setProgress] = useState(5);
 
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(80), props.order * 200);
+    const timer = setTimeout(() => setProgress(props.value*5), props.order * 200);
     return () => clearTimeout(timer);
-  }, []);
+  }, [props.value]);
 
   return (
     <>
