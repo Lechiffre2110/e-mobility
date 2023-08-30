@@ -24,7 +24,7 @@ export default function Contribution() {
   
       try {
           const response = await axios.post(`${BASE_URL}/contributors`, formData);
-          console.log(response.data);
+          event.target.reset();
       } catch (error) {
           console.error("Error submitting form:", error);
       }

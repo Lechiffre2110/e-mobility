@@ -28,6 +28,7 @@ export default function fileUpload() {
     setToastDescription("Dateiname: " + currentFileName);
     toggleToast("Datei wird hochgeladen");
     uploadData(formData);
+    event.target.reset();
   }
 
   function toggleToast(title, shouldOpen = null) {

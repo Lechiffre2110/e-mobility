@@ -24,6 +24,7 @@ export default function BugReport() {
         method: "POST",
         body: formData,
       });
+      event.target.reset();
     } catch (error) {
       console.log(error);
     }
