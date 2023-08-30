@@ -18,7 +18,7 @@ function LandingPage(props) {
         <h1 className="mt-6 text-4xl font-extrabold lg:text-5xl">Projekt E-Mobility</h1>
         <p className="mt-3 mb-4 lg:mt-5">Ein automatisiertes Messsystem zur Analyse von Fahrzeugdaten alternativer Antriebsarten.
         </p>
-        <Button className="w-[35%] m-auto z-10" label="Mehr erfahren" rounded />
+        <Button className="w-[50%] md:w-[40%] lg:w-[35%] m-auto z-10" label="Mehr erfahren" rounded />
       </div>
       <div className="lg:w-[50%] flex justify-center items-center">
         <svg className="w-[80vw] h-[40%] lg:w-full lg:h-auto" id="eMcyvzsehbA1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" width="500" height="500">
