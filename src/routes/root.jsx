@@ -9,7 +9,10 @@ export default function root() {
       <div className="px-5 pt-20" id="detail">
         <Outlet />
       </div>
-      <Footer />
+      {
+        /*<Footer />*/
+      }
+      
     </>
   );
 }
