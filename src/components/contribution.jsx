@@ -32,8 +32,8 @@ export default function Contribution() {
     
   return (
     <>
-    <div className="h-16  bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between">
-      <h2 className="text-2xl">
+    <div className="h-16  bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between border">
+      <h2 className="text-xl lg:text-2xl">
         Mitwirkung beantragen
       </h2>
       <OnboardingDialog />
@@ -44,10 +44,10 @@ export default function Contribution() {
       </p>
 
       <Form.Root
-          className="w-[97%] ml-[2%] flex flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto"
+          className="w-[97%] ml-[2%] flex flex-col px-5 lg:px-0 lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto"
           onSubmit={submitForm}
         >
-          <div className="flex flex-col w-[40%]">
+          <div className="flex flex-col lg:w-[40%]">
             <Form.Field className="grid mb-[10px]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
@@ -129,7 +129,7 @@ export default function Contribution() {
             </Form.Field>
           </div>
 
-          <div className="flex flex-col w-[40%]">
+          <div className="flex flex-col lg:w-[40%]">
             <Form.Field className="grid mb-[10px]" name="name">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">

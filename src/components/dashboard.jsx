@@ -82,11 +82,11 @@ const acceptOnboardingRequest = async (id) => {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] mx-[2%] rounded-lg flex items-center px-5 text-gray-700 font-bold border">
+      <h2 className="h-16 text-2xl bg-white w-[97%] mx-[2%] rounded-xl flex items-center px-5 text-gray-700 font-bold border">
         Dashboard
       </h2>
 
-      <div className="grid grid-cols-5 gap-3 w-[97%] mx-[2%]">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 w-[97%] mx-[2%]">
         <DashboardStat
           title="Mitwirkende"
           value={contributorCount}
@@ -106,15 +106,17 @@ const acceptOnboardingRequest = async (id) => {
           icon={RequestIcon}
           order="4"
         />
+        <div className="hidden lg:block">
         <DashboardStat
           title="Vorschläge"
           value="7"
           icon={SuggestionIcon}
           order="4"
         />
+        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 ml-[2%] w-[97%] overflow-hidden">
+      <div className="grid lg:grid-cols-3 gap-2 ml-[2%] w-[97%] overflow-hidden">
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
@@ -154,7 +156,7 @@ const acceptOnboardingRequest = async (id) => {
           </div>
         </div>
 
-        <div className="ml-[2%] flex flex-row justify-around bg-white rounded-xl py-5 px-5 mt-3 h-auto">
+        <div className="flex flex-row justify-around h-auto px-5 py-5 mt-3 bg-white border rounded-xl">
           <div className="w-full">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
             <div className="flex flex-col text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">

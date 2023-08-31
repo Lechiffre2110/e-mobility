@@ -32,65 +32,65 @@ export default function DataHub() {
   );
 
   return (
-    <div className="flex flex-row justify-between p-5 bg-gray-100 rounded-2xl">
-      <div className="flex flex-col rounded-2xl h-[80vh] w-[25%] bg-white p-5 text-gray-500">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-row gap-4 mb-5">
+    <div className="flex flex-col-reverse justify-between p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
+      <div className="flex flex-col rounded-2xl lg:h-[80vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] bg-white p-5 text-gray-500">
+        <div className="flex gap-4 lg:flex-col">
+          <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">Datahub</h2>
           </div>
-          <h3 className="text-xs font-bold">ADMIN</h3>
-          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
+          <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
+          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
             <img className="h-4 mr-2" src={GaugeIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
               Dashboard
             </h3>
           </div>
 
-          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
+          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
             <img className="h-4 mr-2" src={ClipboardIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
               Onboarding
             </h3>
           </div>
 
-          <h3 className="text-xs font-bold">DATEN</h3>
+          <h3 className="hidden text-xs font-bold lg:block">DATEN</h3>
 
-          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}>
+          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}>
             <img className="h-4 mr-2" src={UploadIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Daten hochladen
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+              Upload
             </h3>
           </div>
 
-          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}>
+          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}>
             <img className="h-4 mr-2" src={DownloadIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Daten herunterladen
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+              Download
             </h3>
           </div>
 
-          <div className="flex flex-row items-center" onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}>
+          <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}>
             <img className="h-4 mr-2" src={ChartIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
               Daten Anzeigen
             </h3>
           </div>
 
-          <h3 className="text-xs font-bold">PROJEKT</h3>
+          <h3 className="hidden text-xs font-bold lg:block">PROJEKT</h3>
           <div
-            className="flex flex-row items-center"
+            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
             onClick={() =>
               setSelectedMenuItem(MenuPoints.MITWIRKUNG_BEANTRAGEN)
             }
           >
             <img className="h-4 mr-2" src={ContributionIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Mitwirkung beantragen
+            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+              Contribution
             </h3>
           </div>
 
-          <div className="flex flex-row items-center" onClick={() =>
+          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() =>
               setSelectedMenuItem(MenuPoints.BUG_MELDEN)
             }>
             <img className="h-4 mr-2" src={BugIcon} />
@@ -99,7 +99,7 @@ export default function DataHub() {
             </h3>
           </div>
 
-          <div className="flex flex-row items-center">
+          <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
             <img className="h-4 mr-2" src={SettingsIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
               Einstellungen
@@ -107,7 +107,7 @@ export default function DataHub() {
           </div>
         </div>
       </div>
-      <div className="w-[100%]">
+      <div className="w-full sm:w-[75%] mb-14 sm:mb-0">
         {selectedMenuItem === MenuPoints.DASHBOARD && <Dashboard />}
         {selectedMenuItem === MenuPoints.HOCHLADEN && <FileUpload />}
         {selectedMenuItem === MenuPoints.HERUNTERLADEN && <FileDownload />}
