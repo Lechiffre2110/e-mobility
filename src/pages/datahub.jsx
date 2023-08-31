@@ -32,7 +32,7 @@ export default function DataHub() {
   );
 
   return (
-    <div className="flex flex-col-reverse justify-between p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
+    <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
       <div className="flex flex-col rounded-2xl lg:h-[80vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] bg-white p-5 text-gray-500">
         <div className="flex gap-4 lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
@@ -107,7 +107,7 @@ export default function DataHub() {
           </div>
         </div>
       </div>
-      <div className="w-full sm:w-[75%] mb-14 sm:mb-0">
+      <div className="w-full lg:w-[75%] mb-14 sm:mb-0">
         {selectedMenuItem === MenuPoints.DASHBOARD && <Dashboard />}
         {selectedMenuItem === MenuPoints.HOCHLADEN && <FileUpload />}
         {selectedMenuItem === MenuPoints.HERUNTERLADEN && <FileDownload />}

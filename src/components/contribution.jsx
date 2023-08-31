@@ -32,7 +32,7 @@ export default function Contribution() {
     
   return (
     <>
-    <div className="h-16  bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between border">
+    <div className="h-16  bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between border">
       <h2 className="text-xl lg:text-2xl">
         Mitwirkung beantragen
       </h2>
@@ -44,7 +44,7 @@ export default function Contribution() {
       </p>
 
       <Form.Root
-          className="w-[97%] ml-[2%] flex flex-col px-5 lg:px-0 lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto"
+          className="lg:w-[97%] lg:ml-[2%] flex flex-col px-5 lg:px-0 lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto"
           onSubmit={submitForm}
         >
           <div className="flex flex-col lg:w-[40%]">
