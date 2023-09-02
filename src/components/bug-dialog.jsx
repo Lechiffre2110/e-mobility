@@ -57,7 +57,7 @@ const resolveBug = async () => {
               <label className="text-mauve11 text-[12px]" htmlFor="description">
                 BESCHREIBUNG
               </label>
-              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-auto w-full flex-1 items-center justify-center text-[15px]">
+              <p className="text-mauve12 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 text-[15px]">
                 {props.description}
               </p>
             </fieldset>
