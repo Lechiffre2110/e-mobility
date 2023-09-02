@@ -82,7 +82,7 @@ const acceptOnboardingRequest = async (id) => {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] mx-[2%] rounded-xl flex items-center px-5 text-gray-700 font-bold border">
+      <h2 className="h-16 text-2xl bg-white w-[97%] mx-[2%] rounded-xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
         Dashboard
       </h2>
 
@@ -117,7 +117,7 @@ const acceptOnboardingRequest = async (id) => {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-2 ml-[2%] w-[97%] overflow-hidden">
-        <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
+        <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border lg:border-0 rounded-xl">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
             <div className="flex flex-col justify-between w-full max-h-[250px] overflow-y-auto">
@@ -156,7 +156,7 @@ const acceptOnboardingRequest = async (id) => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-around h-auto px-5 py-5 mt-3 bg-white border rounded-xl">
+        <div className="flex flex-row justify-around h-auto px-5 py-5 mt-3 bg-white border rounded-xl lg:border-0">
           <div className="w-full">
             <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
             <div className="flex flex-col text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">
@@ -195,7 +195,7 @@ const acceptOnboardingRequest = async (id) => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl">
+        <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl lg:border-0">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">
               Onboarding Requests

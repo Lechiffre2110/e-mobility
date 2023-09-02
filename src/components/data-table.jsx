@@ -84,7 +84,7 @@ export default function DataTable(props) {
   return (
     <>
       <div className="rounded-2xl w-[97%] ml-[2%] bg-white h-[74%] px-[3%] py-[2%]">
-        <div className="flex p-[10px] w-[100%] min-w-max rounded-md bg-white shadow-[0_2px_10px] shadow-blackA7 items-center mb-3">
+        <div className="flex w-[100%] min-w-max rounded-md bg-white items-center mb-3">
           <div className="flex flex-col gap-4 w-[100%]">
             <div className="flex flex-row gap-4">
               <div className="flex flex-row gap-1 w-[100%]">

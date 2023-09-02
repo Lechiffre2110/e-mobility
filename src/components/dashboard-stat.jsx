@@ -10,23 +10,23 @@ export default function DashboardStat(props) {
 
   return (
     <>
-      <div className="mt-4 w-full h-[90px] flex flex-col justify-around bg-white border rounded-xl px-3 py-1">
+      <div className="mt-4 w-full h-[90px] flex flex-col justify-around bg-white border lg:border-0 rounded-xl px-3 py-1">
         <div className="flex flex-row items-start justify-between w-full">
           <img src={props.icon} className="w-[30px] h-[30px]" />
           <div>
-            <h3>{props.title}</h3>
-            <p className="text-2xl font-bold text-right">{props.value}</p>
+            <h3 className="text-gray-800">{props.title}</h3>
+            <p className="text-2xl font-bold text-right text-[#6C62DD]">{props.value}</p>
           </div>
         </div>
         <Progress.Root
-          className="relative overflow-hidden bg-blackA9 rounded-full w-full h-[5px]"
+          className="relative overflow-hidden bg-gray-200 rounded-full w-full h-[5px]"
           style={{
             transform: "translateZ(0)",
           }}
           value={progress}
         >
           <Progress.Indicator
-            className="bg-blue7 w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+            className="bg-[#6C62DD] w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
             style={{ transform: `translateX(-${100 - progress}%)` }}
           />
         </Progress.Root>
