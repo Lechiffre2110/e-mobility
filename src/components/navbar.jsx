@@ -71,6 +71,12 @@ export default function Navbar() {
           } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white lg:opacity-100`}
         >
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5 ">
+          <li className="duration-300 ease-in w-min group">
+              <Link to="/" onClick={handleLinkClick}>
+                Home
+              </Link>
+              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+            </li>
             <li className="duration-300 ease-in w-min group">
               <Link to="/authors" onClick={handleLinkClick}>
                 Autoren
