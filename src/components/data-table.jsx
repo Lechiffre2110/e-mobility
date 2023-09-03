@@ -84,11 +84,11 @@ export default function DataTable(props) {
   return (
     <>
       <div className="rounded-2xl w-[97%] ml-[2%] bg-white h-[74%] px-[3%] py-[2%]">
-    <div className="flex w-[100%] min-w-max rounded-md bg-white items-center mb-3">
+    <div className="flex w-[100%]  rounded-md bg-white items-center mb-3">
         <div className="flex flex-col gap-4 w-[100%]">
-            <div className="flex flex-row gap-4">
-              <div className="flex flex-row gap-1 w-[100%]">
-                <label className="text-[15px] font-medium leading-[35px] text-gray-700">
+            <div className="flex gap-4 lg:flex-row">
+              <div className="flex flex-col lg:flex-row gap-1 w-[100%]">
+                <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
                     Fahrzeug
                 </label>
                 <DropdownMenu
@@ -98,8 +98,8 @@ export default function DataTable(props) {
                     onChange={(value) => setSelectedCar(value)}
                                     />
             </div>
-            <div className="flex flex-row gap-1 w-[50%]">
-                <label className="text-[15px] font-medium leading-[35px] text-gray-700">
+            <div className="flex flex-col lg:flex-row gap-1 w-[50%]">
+                <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
                     Von
                 </label>
                 <input
@@ -108,8 +108,8 @@ export default function DataTable(props) {
                     onChange={(e) => setStartDate(e.target.value)}
                 />
             </div>
-            <div className="flex flex-row gap-1 w-[50%]">
-                <label className="text-[15px] font-medium leading-[35px] text-gray-700">
+            <div className="flex flex-col lg:flex-row gap-1 w-[50%]">
+                <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
                     Bis
                 </label>
                 <input
