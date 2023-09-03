@@ -25,7 +25,6 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
   display: block;
-  pointer-events: none;
 }
 
 .open-menu {
