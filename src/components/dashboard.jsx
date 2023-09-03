@@ -135,9 +135,11 @@ const acceptOnboardingRequest = async (id) => {
                 return (
                   <div>
                     <div className="flex flex-row justify-between w-full py-2 text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">
-                      <div className="flex">
-                        <h3>{request.name} -</h3>
-                        <h3 className="ml-1 text-gray-500">{request.role}</h3>
+                      <div className="flex flex-col">
+                        <h3>{request.name}</h3>
+                        <div className="flex flex-row items-center px-2 border text-[12px] font-normal rounded-full w-min justify-center gap-1 text-gray-500">
+                        <h3 className="">{request.role}</h3>
+                        </div>
                       </div>
                       <ContributionDialog
                         id={request._id}
