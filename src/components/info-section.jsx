@@ -1,8 +1,11 @@
+import HorizontalSeparator from "./horizontal-separator";
+
 export default function infoSection(props) {
   return (
     <>
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold">Was ist Projekt E-Mobility?</h2>
+    <h2 className="mb-2 text-2xl font-bold text-gray-800">Projekt Intro</h2>
+      <div className="mt-8 w-[95%]">
+        <h2 className="mb-2 text-xl font-bold text-gray-800">Was ist Projekt E-Mobility?</h2>
         <p>
           Projekt E-Mobility ist ein fachbereichsübergreifendes Projekt des
           Fachbereichs 4: Informatik und des Fachbereichs 2 Fahrzeugtechnik. Das
@@ -14,8 +17,8 @@ export default function infoSection(props) {
         </p>
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold">Was wollen wir erreichen?</h2>
+      <div className="mt-8 w-[95%]">
+        <h2 className="mb-2 text-xl font-bold text-gray-800">Was wollen wir erreichen?</h2>
         <p>
           Das Projekt versucht wie oben bereit erwähnt Daten zu sammeln und
           damit die Basis zu schaffen, Rückschlüsse auf die Rekupperation von
@@ -29,8 +32,8 @@ export default function infoSection(props) {
         </p>
       </div>
 
-      <div className="my-8">
-        <h2 className="text-2xl font-bold">Wer kann am Projekt mitwirken?</h2>
+      <div className="my-8 w-[95%]">
+        <h2 className="mb-2 text-xl font-bold text-gray-800">Wer kann am Projekt mitwirken?</h2>
         <p>
           Primär richtet sich das Projekt an Studierende der HTW Berlin. Als
           Open-Source Projekt steht es aber auch außenstehenden Personen frei,
@@ -38,6 +41,13 @@ export default function infoSection(props) {
           <a href="https://www.discord.com">Projekt Discord</a> besteht
           desweiteren die Möglichkeit, sich mit den aktiven Studenten und
           anderen Mitwirkenden auszutauschen.
+        </p>
+      </div>
+      <HorizontalSeparator />
+      <div className="my-8 w-[95%]">
+        <h2 className="mb-2 text-2xl font-bold text-gray-800">FAQs</h2>
+        <p>
+          Hier FAQs ausklappbar
         </p>
       </div>
     </>
