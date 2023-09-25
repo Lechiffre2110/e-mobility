@@ -15,6 +15,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const router = createBrowserRouter([
   {
@@ -52,10 +53,18 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Theme>
-      <PrimeReactProvider>
-        <RouterProvider router={router} />
-      </PrimeReactProvider>
-    </Theme>
+    <Auth0Provider
+      domain="dev-yokx85jgh6jg1efj.eu.auth0.com"
+      clientId="oYYkAM0wPimXi0hZ6wXyC733Kn0fNheU"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
+      <Theme>
+        <PrimeReactProvider>
+          <RouterProvider router={router} />
+        </PrimeReactProvider>
+      </Theme>
+    </Auth0Provider>
   </React.StrictMode>
 );
