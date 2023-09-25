@@ -10,8 +10,11 @@ import RequestIcon from "../assets/git-branch.svg";
 import SuggestionIcon from "../assets/message.svg";
 import DataTable from "./data-table";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 export default function Dashboard() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [bugs, setBugs] = useState([]);
   const [requests, setRequests] = useState([]);
   const [onboardingRequests, setOnboardingRequests] = useState([]);
@@ -79,6 +82,16 @@ const acceptOnboardingRequest = async (id) => {
     getRequests();
     getOnboardingRequests();
   }, [pageReload]);
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+    <div className="m-auto">Unauthorized</div>
+    );
+  }
 
   return (
     <>
