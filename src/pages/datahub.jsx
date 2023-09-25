@@ -1,5 +1,5 @@
 import * as Separator from "@radix-ui/react-separator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FileUpload from "../components/file-upload";
 import GaugeIcon from "../assets/activity.svg";
 import SettingsIcon from "../assets/settings.svg";
@@ -14,7 +14,8 @@ import FileDownload from "../components/file-download";
 import Contribution from "../components/contribution";
 import BugReport from "../components/bug-report";
 import Dashboard from "../components/dashboard";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { Menu } from "primereact/menu";
 
 const MenuPoints = {
   DASHBOARD: "DASHBOARD",
@@ -27,9 +28,16 @@ const MenuPoints = {
 };
 
 export default function DataHub() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [selectedMenuItem, setSelectedMenuItem] = useState(
     MenuPoints.DASHBOARD
   );
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      setSelectedMenuItem(MenuPoints.HOCHLADEN);
+    }
+  }, [isLoading, isAuthenticated]);
 
   return (
     <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
@@ -39,38 +47,67 @@ export default function DataHub() {
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">Datahub</h2>
           </div>
-          <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
-          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
-            <img className="h-4 mr-2" src={GaugeIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
-              Dashboard
-            </h3>
-          </div>
 
-          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}>
-            <img className="h-4 mr-2" src={ClipboardIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
-              Onboarding
-            </h3>
-          </div>
+          {isAuthenticated && (
+            <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
+              <img className="h-8 mr-2" src={user.picture} />
+              <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+                {user.name}
+              </h3>
+            </div>
+          )}
+
+          {isAuthenticated && (
+            <div>
+              <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
+              <div
+                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+                onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}
+              >
+                <img className="h-4 mr-2" src={GaugeIcon} />
+                <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+                  Dashboard
+                </h3>
+              </div>
+
+              <div
+                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+                onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}
+              >
+                <img className="h-4 mr-2" src={ClipboardIcon} />
+                <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+                  Onboarding
+                </h3>
+              </div>
+            </div>
+          )}
 
           <h3 className="hidden text-xs font-bold lg:block">DATEN</h3>
 
-          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}>
+          <div
+            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}
+          >
             <img className="h-4 mr-2" src={UploadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
               Upload
             </h3>
           </div>
 
-          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}>
+          <div
+            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}
+          >
             <img className="h-4 mr-2" src={DownloadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
               Download
             </h3>
           </div>
 
-          <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}>
+          <div
+            className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}
+          >
             <img className="h-4 mr-2" src={ChartIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
               Daten Anzeigen
@@ -90,9 +127,10 @@ export default function DataHub() {
             </h3>
           </div>
 
-          <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row" onClick={() =>
-              setSelectedMenuItem(MenuPoints.BUG_MELDEN)
-            }>
+          <div
+            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            onClick={() => setSelectedMenuItem(MenuPoints.BUG_MELDEN)}
+          >
             <img className="h-4 mr-2" src={BugIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
               Bug melden
@@ -111,7 +149,9 @@ export default function DataHub() {
         {selectedMenuItem === MenuPoints.DASHBOARD && <Dashboard />}
         {selectedMenuItem === MenuPoints.HOCHLADEN && <FileUpload />}
         {selectedMenuItem === MenuPoints.HERUNTERLADEN && <FileDownload />}
-        {selectedMenuItem === MenuPoints.MITWIRKUNG_BEANTRAGEN && <Contribution />}
+        {selectedMenuItem === MenuPoints.MITWIRKUNG_BEANTRAGEN && (
+          <Contribution />
+        )}
         {selectedMenuItem === MenuPoints.BUG_MELDEN && <BugReport />}
       </div>
     </div>
