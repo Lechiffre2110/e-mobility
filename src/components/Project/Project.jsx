@@ -5,7 +5,7 @@ import "./project.css";
 export const Project = ({ project }) => (
   <div className="">
     <h1 className="text-3xl text-[#333] mb-2">Contributors</h1>
-    <p className="lg:w-[60%]">Die folgenden Personen haben am Projekt aktiv mitgewirkt. Falls du ebenfalls am Projekt beteiligt bist kannst du im Datahub beantragen, als Contributor aufgeführt zu werden.</p>
+    <p>Die folgenden Personen haben am Projekt aktiv mitgewirkt. Falls du ebenfalls am Projekt beteiligt bist kannst du im Datahub beantragen, als Contributor aufgeführt zu werden.</p>
     <HorizontalSeparator />
     <div className="authors">
       <ContributorList
