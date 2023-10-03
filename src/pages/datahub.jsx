@@ -18,6 +18,7 @@ import Onboarding from "../components/onboarding";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/login-button";
 import LogoutButton from "../components/logout-button";
+import MobileDashboardMenu from "../components/mobile-dashboard-menu";
 
 
 const MenuPoints = {
@@ -46,14 +47,14 @@ export default function DataHub() {
   return (
     <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
       <div className="flex flex-col lg:rounded-2xl lg:h-[100%] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:bg-white p-5 text-gray-500 bg-white">
-        <div className="flex gap-4 lg:flex-col">
+        <div className="hidden gap-4 lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">Datahub</h2>
           </div>
 
           {isAuthenticated && (
-            <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
+            <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
               <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
                 {user.name}
               </h3>
@@ -170,6 +171,7 @@ export default function DataHub() {
         )}
         {selectedMenuItem === MenuPoints.BUG_MELDEN && <BugReport />}
       </div>
+      <MobileDashboardMenu />
     </div>
   );
 }
