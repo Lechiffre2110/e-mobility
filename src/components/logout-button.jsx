@@ -4,7 +4,7 @@ const LogoutButton = () => {
     const { logout } = useAuth0();
   
     return (
-      <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+      <button className="bg-gray-200 px-4 py-2 rounded-full hover:bg-[#6bdbc1] ease-in duration-300" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
         Log Out
       </button>
     );
