@@ -60,7 +60,7 @@ export default function fileUpload() {
   return (
     <>
       <Toast.Provider swipeDirection="right" duration={1500}>
-        <h2 className="h-16 text-2xl bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border">
+        <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
           Daten hochladen
         </h2>
         <p className="my-6 text-center">
@@ -70,7 +70,7 @@ export default function fileUpload() {
           CSV Datei vom USB Stick hoch. <br />
         </p>
         <Form.Root
-          className="lg:w-[97%] lg:ml-[2%] flex flex-col lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto border"
+          className="lg:w-[97%] lg:ml-[2%] flex flex-col lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto border lg:border-0"
           onSubmit={submitForm}
         >
           <div className="px-5 flex flex-col lg:w-[40%] lg:p-0">
