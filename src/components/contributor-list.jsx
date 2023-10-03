@@ -1,7 +1,13 @@
+import React, { useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
+import LinkedInIcon from "../assets/linkedIn.svg";
+import GitHubIcon from "../assets/github.svg";
 
 export default function ContributorList(props) {
   const color = props.color;
+  const [showDetails, setShowDetails] = useState(
+    props.contributors.map(() => false)
+  );
 
   function getInitials(name) {
     const titles = ["Prof.", "Dr.", "Dr.-Ing."];
@@ -46,33 +52,62 @@ export default function ContributorList(props) {
   }
 
   const colorClasses = getColorClasses(color);
-  
+
+  function toggleDetails(index) {
+    const updatedShowDetails = [...showDetails];
+    updatedShowDetails[index] = !updatedShowDetails[index];
+    setShowDetails(updatedShowDetails);
+  }
+
   return (
     <>
       <h2 className="font-bold">{props.title}</h2>
       {props.contributors.map((contributor, index) => (
-        <div
-          key={index}
-          className="flex flex-row items-center justify-between gap-5 my-5 "
-        >
-          <div className="flex flex-row items-center gap-5">
-            <Avatar.Root className="bg-blackA3 inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
-              <Avatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-gray5 text-[15px] font-medium">
-                {getInitials(contributor.name)}
-              </Avatar.Fallback>
-            </Avatar.Root>
-            <div className="flex flex-col items-start">
-              <p className="font-bold">{contributor.name}</p>
-              <p
-                className={`mt-1 px-2 border rounded-full ${colorClasses.border} ${colorClasses.text} ${colorClasses.bg} text-[12px]`}
-              >
-                {contributor.role}
-              </p>
+        <div key={index}>
+          <div className="flex flex-row items-center justify-between gap-5 my-5 ">
+            <div className="flex flex-row items-center gap-5">
+              <Avatar.Root className="bg-blackA3 inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
+                <Avatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-gray5 text-[15px] font-medium">
+                  {getInitials(contributor.name)}
+                </Avatar.Fallback>
+              </Avatar.Root>
+              <div className="flex flex-col items-start">
+                <p className="font-bold">{contributor.name}</p>
+                <p
+                  className={`mt-1 px-2 border rounded-full ${colorClasses.border} ${colorClasses.text} ${colorClasses.bg} text-[12px]`}
+                >
+                  {contributor.role}
+                </p>
+              </div>
             </div>
+            <button
+              className="bg-blue4 text-blue11 hover:bg-blue5 focus:shadow-blue7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+              onClick={() => toggleDetails(index)}
+            >
+              {showDetails[index] ? "Hide Details" : "Details"}
+            </button>
           </div>
-          <button className="bg-blue4 text-blue11 hover:bg-blue5 focus:shadow-blue7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-            Details
-          </button>
+          {showDetails[index] && (
+            <div>
+              <p>
+                <strong>Kontakt:</strong> {contributor.email}
+              </p>
+              <p>
+                <strong>Tätigkeitsbereich:</strong>
+              </p>
+              <p>{contributor.description}</p>
+              {contributor.github && (
+                <a href={contributor.github}>
+                  <img src={GitHubIcon} className="w-5 h-5" />
+                </a>
+              )}
+              {contributor.linkedIn && (
+                <a href={contributor.linkedIn}>
+                  <img src={LinkedInIcon} className="w-5 h-5" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       ))}
     </>
