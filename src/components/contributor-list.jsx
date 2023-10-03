@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
-import LinkedInIcon from "../assets/linkedIn.svg";
+import LinkedInIcon from "../assets/linkedin.svg";
 import GitHubIcon from "../assets/github.svg";
 
 export default function ContributorList(props) {
