@@ -998,8 +998,6 @@ function LandingPage(props) {
             </g>
           </svg>
         </div>
-        <LoginButton />
-        <LogoutButton />
       </div>
       <InfoSection />
     </>
