@@ -16,55 +16,78 @@ import "primereact/resources/primereact.min.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { Auth0Provider } from "@auth0/auth0-react";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import enTranslation from "./locales/en.json";
+import deTranslation from "./locales/de.json";
+import { useTranslation } from "react-i18next";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/authors",
-        element: <Authors />,
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      },
-      {
-        path: "/cars",
-        element: <Cars />,
-      },
-      {
-        path: "/documentation",
-        element: <Documentation />,
-      },
-      {
-        path: "/datahub",
-        element: <DataHub />,
-      },
-      {
-        path: "/",
-        element: <LandingPage />,
-      },
-    ],
+const TranslationWrapper = () => {
+  const { t } = useTranslation();
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      errorElement: <ErrorPage t={t}/>,
+      children: [
+        {
+          path: "/authors",
+          element: <Authors />,
+        },
+        {
+          path: "/blog",
+          element: <Blog />,
+        },
+        {
+          path: "/cars",
+          element: <Cars t={t}/>,
+        },
+        {
+          path: "/documentation",
+          element: <Documentation />,
+        },
+        {
+          path: "/datahub",
+          element: <DataHub t={t}/>,
+        },
+        {
+          path: "/",
+          element: <LandingPage t={t}/>,
+        },
+      ],
+    },
+  ]);
+
+  return (
+    <React.StrictMode>
+      <Auth0Provider
+        domain="dev-yokx85jgh6jg1efj.eu.auth0.com"
+        clientId="oYYkAM0wPimXi0hZ6wXyC733Kn0fNheU"
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+        }}
+      >
+        <Theme>
+          <PrimeReactProvider>
+            <RouterProvider router={router} />
+          </PrimeReactProvider>
+        </Theme>
+      </Auth0Provider>
+    </React.StrictMode>
+  );
+}
+
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: enTranslation },
+    de: { translation: deTranslation },
   },
-]);
+  lng: "de",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Auth0Provider
-      domain="dev-yokx85jgh6jg1efj.eu.auth0.com"
-      clientId="oYYkAM0wPimXi0hZ6wXyC733Kn0fNheU"
-      authorizationParams={{
-        redirect_uri: window.location.origin,
-      }}
-    >
-      <Theme>
-        <PrimeReactProvider>
-          <RouterProvider router={router} />
-        </PrimeReactProvider>
-      </Theme>
-    </Auth0Provider>
-  </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById("root")).render(<TranslationWrapper />);

@@ -7,18 +7,21 @@ import * as Select from "@radix-ui/react-select";
 import classnames from "classnames";
 import DropdownMenu from "./dropdown-menu";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function fileUpload() {
   const [open, setOpen] = useState(false);
   const [toastTitle, setToastTitle] = useState("");
   const [toastDescription, setToastDescription] = useState("");
   const [selectedCar, setSelectedCar] = useState("");
+  const { t } = useTranslation();
 
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
     { name: "Toyota Mirai", value: "Toyota Mirai" },
-    { name: "Sonstiges", value: "Sonstiges" },
+    { name: t('datahub.upload.car.dropdown.others'), value: t('datahub.upload.car.dropdown.others') },
   ];
+
 
   function submitForm(event) {
     event.preventDefault();
@@ -61,13 +64,10 @@ export default function fileUpload() {
     <>
       <Toast.Provider swipeDirection="right" duration={1500}>
         <h2 className="h-16 text-2xl bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border">
-          Daten hochladen
+        {t('datahub.upload.header')}
         </h2>
         <p className="my-6 text-center">
-          Hier haben Sie die Möglichkeit die von Ihnen aufgezeichneten Daten
-          hochzuladen. <br />
-          Füllen Sie dafür bitte das untenstehende Formular aus und laden die
-          CSV Datei vom USB Stick hoch. <br />
+        {t('datahub.upload.text')}
         </p>
         <Form.Root
           className="lg:w-[97%] lg:ml-[2%] flex flex-col lg:flex-row justify-around bg-white rounded-2xl py-5 mt-3 h-auto border"
@@ -77,19 +77,19 @@ export default function fileUpload() {
             <Form.Field className="grid mb-[10px]" name="email">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Email
+                {t('datahub.upload.email')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte geben Sie eine Email an
+                  {t('datahub.upload.email')}
                 </Form.Message>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="typeMismatch"
                 >
-                  Bitte geben Sie eine valide Email an
+                 {t('datahub.upload.email.valid')}
                 </Form.Message>
               </div>
 
@@ -98,7 +98,7 @@ export default function fileUpload() {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="email"
                   required
-                  placeholder="Gib deine Email Adresse ein"
+                  placeholder={t('datahub.upload.email.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -106,19 +106,19 @@ export default function fileUpload() {
             <Form.Field className="grid mb-[10px]" name="name">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Name
+                {t('datahub.upload.name')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib einen Namen an
+                  {t('datahub.upload.name.placeholder')}
                 </Form.Message>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="typeMismatch"
                 >
-                  Bitte gib einen gültigen Namen an
+                 {t('datahub.upload.name.valid')}
                 </Form.Message>
               </div>
 
@@ -127,7 +127,7 @@ export default function fileUpload() {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
                   required
-                  placeholder="Gib deinen Namen ein"
+                  placeholder={t('datahub.upload.name.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -135,13 +135,13 @@ export default function fileUpload() {
             <Form.Field className="grid mb-[10px]" name="description">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Beschreibung
+                {t('datahub.upload.description')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte beschreiben Sie den Datensatz kurz
+                  {t('datahub.upload.description.placeholder')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -149,7 +149,7 @@ export default function fileUpload() {
                   className="box-border w-full inline-flex appearance-none items-center justify-center rounded-[8px] p-[10px] text-[15px] leading-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6] outline-none resize-none"
                   required
                   rows="4"
-                  placeholder="Beschreibe den Datensatz kurz"
+                  placeholder={t('datahub.upload.description.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -159,20 +159,20 @@ export default function fileUpload() {
             <Form.Field className="grid mb-[10px]" name="model">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Fahrzeug
+                {t('datahub.upload.car')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib ein Modell an
+                  {t('datahub.upload.car.placeholder')}
                 </Form.Message>
               </div>
 
               <Form.Control asChild>
                 <DropdownMenu
-                  label="Fahrzeug"
-                  description="Wähle ein Fahrzeug aus"
+                  label={t('datahub.upload.car.dropdown.header')}
+                  description={t('datahub.upload.car.placeholder')}
                   data={cars}
                   onChange={(value) => setSelectedCar(value)}
                 />
@@ -181,19 +181,19 @@ export default function fileUpload() {
             <Form.Field className="grid mb-[10px]" name="file">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Datei
+                {t('datahub.upload.file')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte lade eine Datei hoch
+                  {t('datahub.upload.file.missing')}
                 </Form.Message>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="typeMismatch"
                 >
-                  Bitte lade eine gültige CSV Datei hoch
+                  {t('datahub.upload.file.valid')}
                 </Form.Message>
               </div>
 
@@ -210,7 +210,7 @@ export default function fileUpload() {
               <div className="flex flex-row items-center justify-center">
                 <Button
                   className="w-[50%] m-auto z-10"
-                  label="Hochladen"
+                  label={t('datahub.upload.uploadbutton')}
                   rounded
                 />
               </div>

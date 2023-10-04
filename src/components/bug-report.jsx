@@ -1,14 +1,18 @@
 import { useState } from "react";
 import * as Form from "@radix-ui/react-form";
 import DropdownMenu from "./dropdown-menu";
+import { useTranslation } from "react-i18next";
+
+
 
 export default function BugReport() {
+  const { t } = useTranslation();
   const [selectedCar, setSelectedCar] = useState("");
 
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
     { name: "Toyota Mirai", value: "Toyota Mirai" },
-    { name: "Sonstiges", value: "Sonstiges" },
+    { name: t('datahub.bug.car.dropdown.others'), value: "Sonstiges" },
   ];
 
   const submitBug = async (event) => {
@@ -33,7 +37,7 @@ export default function BugReport() {
   return (
     <>
       <h2 className="h-16 text-2xl bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border">
-        Bug melden
+      {t('datahub.bug.header')}
       </h2>
       <Form.Root onSubmit={submitBug}>
         <div className="lg:w-[40%] mt-14 m-auto flex flex-col justify-center bg-white rounded-2xl py-5 items-center border">
@@ -41,7 +45,7 @@ export default function BugReport() {
             <Form.Field className="grid mb-[10px]" name="contact">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Kontakt
+                {t('datahub.bug.contact')}
                 </Form.Label>
               </div>
 
@@ -49,7 +53,7 @@ export default function BugReport() {
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
-                  placeholder="Gib eine Kontaktmöglichkeit an (optional)"
+                  placeholder={t('datahub.bug.contact.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -59,7 +63,7 @@ export default function BugReport() {
             <Form.Field className="grid mb-[10px]" name="title">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Bug Titel
+                {t('datahub.bug.title')}
                 </Form.Label>
               </div>
 
@@ -67,7 +71,7 @@ export default function BugReport() {
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
-                  placeholder="Gib dem Bug einen Titel"
+                  placeholder={t('datahub.bug.title.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -77,20 +81,20 @@ export default function BugReport() {
             <Form.Field className="grid mb-[10px]" name="model">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Fahrzeug
+                {t('datahub.bug.car')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib ein Modell an
+                  {t('datahub.bug.car.missing')}
                 </Form.Message>
               </div>
 
               <Form.Control asChild>
                 <DropdownMenu
-                  label="Fahrzeug"
-                  description="Wähle ein Fahrzeug aus"
+                  label={t('datahub.bug.car.dropdown.header')}
+                  description={t('datahub.bug.car.placeholder')}
                   data={cars}
                   onChange={(value) => setSelectedCar(value)}
                 />
@@ -102,13 +106,13 @@ export default function BugReport() {
             <Form.Field className="grid mb-[10px]" name="description">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-[15px] font-medium leading-[35px] text-gray-700">
-                  Beschreibung
+                {t('datahub.bug.description')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte beschreiben Sie den Bug
+                  {t('datahub.bug.description.placeholder')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -116,7 +120,7 @@ export default function BugReport() {
                   className="box-border w-full inline-flex appearance-none items-center justify-center rounded-[8px] p-[10px] text-[15px] leading-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6] outline-none resize-none"
                   required
                   rows="4"
-                  placeholder="Bitte beschreiben Sie den Bug so genau wie möglich"
+                  placeholder={t('datahub.bug.description.placeholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -124,7 +128,7 @@ export default function BugReport() {
           <Form.Submit asChild>
             <div className="flex flex-row items-center justify-center">
               <button className="mt-2 inline-flex items-center justify-center rounded px-[15px] text-[15px] leading-none font-medium h-[35px] bg-green4 text-green11 hover:bg-green5 focus:shadow-[0_0_0_2px] focus:shadow-green7 outline-none cursor-default">
-                Bug melden
+              {t('datahub.bug.submitbutton')}
               </button>
             </div>
           </Form.Submit>

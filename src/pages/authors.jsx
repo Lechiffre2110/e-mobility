@@ -46,7 +46,6 @@ export default function Authors() {
       const response = await axios.get(`${BASE_URL}/contributors`);
       let allContributors = response.data.data;
       let approvedContributors = allContributors.filter((contributor) => contributor.approved);
-
       const fetchedProfessors = approvedContributors.filter((contributor) => contributor.role === "professor");
       const fetchedStudents = approvedContributors.filter((contributor) => contributor.role === "student");
 

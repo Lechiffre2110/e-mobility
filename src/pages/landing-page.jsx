@@ -4,7 +4,7 @@ import InfoSection from "../components/info-section";
 import LoginButton from "../components/login-button";
 import LogoutButton from "../components/logout-button";
 
-function LandingPage(props) {
+function LandingPage({props,t}) {
   //On page load add active class to svg
   useEffect(() => {
     const svg = document.querySelector("#eMcyvzsehbA1");
@@ -16,15 +16,15 @@ function LandingPage(props) {
       <div className="flex flex-col-reverse text-center lg:flex-row">
         <div className="w-full h-full mb-5 lg:w-[50%] lg:h-[75vh] lg:pr-20 flex flex-col justify-center items-center">
           <h1 className="mt-6 text-4xl font-extrabold lg:text-3xl">
-          Analyse von Fahrzeugdaten alternativer Antriebsarten
+          {t('landingpage.header')}
           </h1>
           <p className="mt-3 mb-4 lg:mt-5">
-            Ein automatisiertes Messsystem zur Analyse von Fahrzeugdaten
-            alternativer Antriebsarten.
+          {t('landingpage.subheader')}
+
           </p>
           <Button
             className="w-[50%] md:w-[40%] lg:w-[35%] m-auto z-10"
-            label="Mehr erfahren"
+            label={t('landingpage.button')}
             rounded
           />
         </div>

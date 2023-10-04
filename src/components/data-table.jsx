@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import DropdownMenu from "./dropdown-menu";
 import axios from "axios";
 import HorizontalSeparator from "./horizontal-separator";
+import { useTranslation } from "react-i18next";
 
 export default function DataTable(props) {
+  const { t } = useTranslation();
   const BASE_URL = "http://localhost:5555/api";
   const cars = [
     { name: "Toyota Mirai", value: "Toyota Mirai" },
     { name: "VW ID.3", value: "VW ID.3" },
-    { name: "Sonstiges", value: "other" },
+    { name: t('datahub.download.others'), value: "other" },
   ];
 
   const [selectedCar, setSelectedCar] = useState("");
@@ -17,6 +19,7 @@ export default function DataTable(props) {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
 
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/data`);
@@ -33,6 +36,7 @@ export default function DataTable(props) {
       console.error("Error fetching data:", error);
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -95,18 +99,18 @@ export default function DataTable(props) {
             <div className="flex gap-4 lg:flex-row">
               <div className="flex flex-col lg:flex-row gap-1 w-[100%]">
                 <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
-                  Fahrzeug
+                {t('datahub.download.car.header')}
                 </label>
                 <DropdownMenu
-                  label="Fahrzeug"
-                  description="Fahrzeug auswählen"
+                  label={t('datahub.download.car.description')}
+                  description={t('datahub.download.car.dropdown.placeholder')}
                   data={cars}
                   onChange={(value) => setSelectedCar(value)}
                 />
               </div>
               <div className="flex flex-col lg:flex-row gap-1 w-[50%]">
                 <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
-                  Von
+                {t('datahub.download.date.start')}
                 </label>
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
@@ -116,7 +120,7 @@ export default function DataTable(props) {
               </div>
               <div className="flex flex-col lg:flex-row gap-1 w-[50%]">
                 <label className="lg:text-[15px] text-[12px] font-medium lg:leading-[35px] text-gray-700">
-                  Bis
+                {t('datahub.download.date.end')}
                 </label>
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
@@ -134,14 +138,14 @@ export default function DataTable(props) {
           <table className="w-full mb-3">
             <thead>
               <tr className="text-left">
-                <th className="px-5 py-3 font-bold text-gray-700">Datum</th>
-                <th className="px-5 py-3 font-bold text-gray-700">Fahrzeug</th>
+                <th className="px-5 py-3 font-bold text-gray-700">{t('datahub.download.date.header')}</th>
+                <th className="px-5 py-3 font-bold text-gray-700">{t('datahub.download.car.header')}</th>
                 <th className="px-5 py-3 font-bold text-gray-700">
-                  Beschreibung
+                {t('datahub.download.description.header')}
                 </th>
-                <th className="px-5 py-3 font-bold text-gray-700">Download</th>
+                <th className="px-5 py-3 font-bold text-gray-700">{t('datahub.download.download.header')}</th>
                 {props.isAdmin && (
-                  <th className="px-5 py-3 font-bold text-gray-700">Löschen</th>
+                  <th className="px-5 py-3 font-bold text-gray-700">{t('datahub.download.delete')}</th>
                 )}
               </tr>
             </thead>
@@ -160,7 +164,7 @@ export default function DataTable(props) {
                         className="bg-blue4 text-blue11 hover:bg-blue5 focus:shadow-blue7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none text-[14px]"
                         onClick={() => downloadFile(data.id)}
                       >
-                        Herunterladen
+                        {t('datahub.download.download.header')}
                       </button>
                     </td>
                     {props.isAdmin && (
@@ -169,7 +173,7 @@ export default function DataTable(props) {
                           className="bg-red4 text-red11 hover:bg-red5 focus:shadow-red7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none text-[14px]"
                           onClick={() => props.deleteData(data.id)}
                         >
-                          Löschen
+                          {t('datahub.download.delete')}
                         </button>
                       </td>
                     )}
@@ -182,7 +186,7 @@ export default function DataTable(props) {
           className="bg-blue4 text-blue11 hover:bg-blue5 focus:shadow-blue7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none text-[14px] mt-5"
           onClick={downloadAllFiles}
         >
-          Alle Datensätze herunterladen
+         {t('datahub.download.downloadbutton')}
         </button>
       </div>
     </>

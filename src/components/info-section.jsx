@@ -1,53 +1,42 @@
 import HorizontalSeparator from "./horizontal-separator";
+import { useTranslation } from 'react-i18next';
 
 export default function infoSection(props) {
+  const { t } = useTranslation();
   return (
     <>
-    <h2 className="mb-2 text-2xl font-bold text-gray-800">Projekt Intro</h2>
+    <h2 className="mb-2 text-2xl font-bold text-gray-800">{t('landingpage.intro.header')}</h2>
       <div className="mt-8 w-[95%]">
-        <h2 className="mb-2 text-xl font-bold text-gray-800">Was ist Projekt E-Mobility?</h2>
+        <h2 className="mb-2 text-xl font-bold text-gray-800">{t('landingpage.projekt.header')}</h2>
         <p>
-          Projekt E-Mobility ist ein fachbereichsübergreifendes Projekt des
-          Fachbereichs 4: Informatik und des Fachbereichs 2 Fahrzeugtechnik. Das
-          Ziel ist es, Fahrzeugdaten von Elektroautos über den verfügbaren
-          OBD-Stecker aufnehmen zu können, um diese im Anschluss analysieren zu
-          können. Dabei wird ein besonderer Fokus auf die Analyse der
-          Rekkuperation der Batterie aber auch anderer technischer Elemente
-          gelegt.
+        {t('landingpage.projekt.text')}
         </p>
       </div>
 
       <div className="mt-8 w-[95%]">
-        <h2 className="mb-2 text-xl font-bold text-gray-800">Was wollen wir erreichen?</h2>
+        <h2 className="mb-2 text-xl font-bold text-gray-800">{t('landingpage.goals.header')}</h2>
         <p>
-          Das Projekt versucht wie oben bereit erwähnt Daten zu sammeln und
-          damit die Basis zu schaffen, Rückschlüsse auf die Rekupperation von
-          Batterien in E-Autos zu erlangen. Das langfristige Ziel ist es ein
-          System zu entwickeln, das möglichst einfach zu bedienen ist und
-          kostengünstig hergestellt werden kann. Dies würde ermöglichen, das
-          Gerät an verschiedene Personen/Institutionen zu schicken und Daten
-          sammeln zu lassen. Das würde wiederum zu mehr Daten und
-          dementsprechend einer besseren Ausgangslage für weitere Forschung
-          führen.
+        {t('landingpage.goals.text')}
         </p>
       </div>
 
       <div className="my-8 w-[95%]">
-        <h2 className="mb-2 text-xl font-bold text-gray-800">Wer kann am Projekt mitwirken?</h2>
+        <h2 className="mb-2 text-xl font-bold text-gray-800">{t('landingpage.collaboration.header')}</h2>
         <p>
-          Primär richtet sich das Projekt an Studierende der HTW Berlin. Als
-          Open-Source Projekt steht es aber auch außenstehenden Personen frei,
-          Vorschläge und Pull Requests für das Projekt einzureichen. Im{" "}
-          <a href="https://www.discord.com">Projekt Discord</a> besteht
-          desweiteren die Möglichkeit, sich mit den aktiven Studenten und
-          anderen Mitwirkenden auszutauschen.
+        {t('landingpage.collaboration.text')}
         </p>
       </div>
       <HorizontalSeparator />
+
+      <div className="mt-8 w-[95%]">
+        <h2 className="mb-2 text-xl font-bold text-gray-800">{t('landingpage.discord.header')}</h2>
+        <a href="https://www.discord.com">Projekt Discord</a>
+      </div>
+
       <div className="my-8 w-[95%]">
         <h2 className="mb-2 text-2xl font-bold text-gray-800">FAQs</h2>
         <p>
-          Hier FAQs ausklappbar
+        {t('landingpage.faqs.text')}
         </p>
       </div>
     </>

@@ -1,11 +1,15 @@
 import ContributorList from "../contributor-list";
 import HorizontalSeparator from "../horizontal-separator";
 import "./project.css";
+import { useTranslation } from "react-i18next";
 
-export const Project = ({ project }) => (
+
+export const Project = ({ project }) => {
+  const { t } = useTranslation();
+  (
   <div className="">
-    <h1 className="text-3xl text-[#333] mb-2">Contributors</h1>
-    <p className="lg:w-[60%]">Die folgenden Personen haben am Projekt aktiv mitgewirkt. Falls du ebenfalls am Projekt beteiligt bist kannst du im Datahub beantragen, als Contributor aufgeführt zu werden.</p>
+    <h1 className="text-3xl text-[#333] mb-2">{t('authorspage.header')}</h1>
+    <p className="lg:w-[60%]">{t('authorspage.text')}</p>
     <HorizontalSeparator />
     <div className="authors">
       <ContributorList
@@ -32,4 +36,5 @@ export const Project = ({ project }) => (
     </div>
     <HorizontalSeparator />
   </div>
-);
+)}
+;

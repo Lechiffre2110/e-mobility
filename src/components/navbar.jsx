@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +14,23 @@ export default function Navbar() {
     setMenuOpen(false);
   }
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+  const [currentLanguage, setCurrentLanguage] = useState("de"); 
+
+  const toggleLanguage = () => {
+    if (currentLanguage === "en") {
+      changeLanguage("de");
+      setCurrentLanguage("de");
+    } else {
+      changeLanguage("en");
+      setCurrentLanguage("en");
+    }
+  };
+
   return (
     <>
       <div
@@ -22,7 +40,7 @@ export default function Navbar() {
         <div className="flex gap-2">
           <img src={Logo} className="hidden w-8 h-8 lg:block" />
           <h1 className="hidden pb-3 text-2xl font-extrabold lg:block lg:pb-0 lg:text-center">
-            Project E-Mobility
+          {t('navbar.name')}
           </h1>
         </div>
         <img src={Logo} className="w-8 h-8 lg:hidden" />
@@ -67,25 +85,27 @@ export default function Navbar() {
 
         <nav
           className={`bg-blue3 pl-5 pt-10 lg:pt-0 border-b-4 border-[#6bdbc1] lg:border-none ${
-            menuOpen ? "open-menu" : "closed-menu pointer-events-none lg:pointer-events-auto"
+            menuOpen
+              ? "open-menu"
+              : "closed-menu pointer-events-none lg:pointer-events-auto"
           } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white lg:opacity-100`}
         >
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5 ">
-          <li className="duration-300 ease-in w-min group">
+            <li className="duration-300 ease-in w-min group">
               <Link to="/" onClick={handleLinkClick}>
-                Home
+              {t('navbar.landingpage')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
               <Link to="/authors" onClick={handleLinkClick}>
-                Autoren
+              {t('navbar.authors')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
               <Link to="/cars" onClick={handleLinkClick}>
-                Fahrzeuge
+              {t('navbar.cars')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
@@ -95,14 +115,20 @@ export default function Navbar() {
                 target="_blank"
                 onClick={handleLinkClick}
               >
-                Dokumentation
+                {t('navbar.documentation')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="duration-300 ease-in w-min group">
               <Link to="/blog" onClick={handleLinkClick}>
-                Blog
+              {t('navbar.blog')}
               </Link>
+              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+            </li>
+            <li className="duration-300 ease-in w-min group">
+            <button onClick={toggleLanguage}>
+            {currentLanguage === "en" ? "🇩🇪" : "🇬🇧"}
+            </button>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             <li className="px-5 rounded-full w-max bg-[#1E1F22] text-white hover:bg-blackA11">
@@ -111,7 +137,7 @@ export default function Navbar() {
                 to="/datahub"
                 onClick={handleLinkClick}
               >
-                Data Hub
+                {t('navbar.datahub')}
               </Link>
             </li>
           </ul>
