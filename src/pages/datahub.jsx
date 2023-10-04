@@ -33,7 +33,7 @@ export default function DataHub() {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      setSearchParams({ menuPage: "Upload" });
+      setSearchParams({ menuPage: "upload" });
     }
   }, [isLoading, isAuthenticated]);
 
