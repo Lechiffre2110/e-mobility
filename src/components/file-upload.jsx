@@ -60,7 +60,7 @@ export default function fileUpload() {
   return (
     <>
       <Toast.Provider swipeDirection="right" duration={1500}>
-        <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
+        <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
           Daten hochladen
         </h2>
         <p className="my-6 text-center">

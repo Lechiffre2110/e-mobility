@@ -32,7 +32,7 @@ export default function BugReport() {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
+      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
         Bug melden
       </h2>
       <Form.Root onSubmit={submitBug}>
