@@ -9,7 +9,7 @@ export default function FileDownload() {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold">
+      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
       {t('datahub.download.header')}
       </h2>
       <p className="my-6 text-center">

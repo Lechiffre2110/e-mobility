@@ -9,7 +9,7 @@ export const Project = ({ project }) => {
   (
   <div className="">
     <h1 className="text-3xl text-[#333] mb-2">{t('authorspage.header')}</h1>
-    <p className="lg:w-[60%]">{t('authorspage.text')}</p>
+    <p>{t('authorspage.text')}</p>
     <HorizontalSeparator />
     <div className="authors">
       <ContributorList

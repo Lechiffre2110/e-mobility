@@ -34,7 +34,7 @@ export default function Contribution() {
     
   return (
     <>
-    <div className="h-16  bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between border">
+    <div className="h-16  bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold justify-between border lg:border-0">
       <h2 className="text-xl lg:text-2xl">
       {t('datahub.contribution.header')}
 

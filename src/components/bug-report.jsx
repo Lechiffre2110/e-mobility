@@ -36,11 +36,11 @@ export default function BugReport() {
 
   return (
     <>
-      <h2 className="h-16 text-2xl bg-white lg:w-[97%] lg:ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border">
+      <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
       {t('datahub.bug.header')}
       </h2>
       <Form.Root onSubmit={submitBug}>
-        <div className="lg:w-[40%] mt-14 m-auto flex flex-col justify-center bg-white rounded-2xl py-5 items-center border">
+        <div className="lg:w-[40%] mt-14 m-auto flex flex-col justify-center bg-white rounded-2xl py-5 items-center border lg:border-0">
           <div className="flex flex-col w-[90%] m-auto">
             <Form.Field className="grid mb-[10px]" name="contact">
               <div className="flex items-baseline justify-between">

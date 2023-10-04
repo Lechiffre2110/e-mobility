@@ -1,5 +1,6 @@
-import * as Separator from "@radix-ui/react-separator";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import * as Separator from "@radix-ui/react-separator";
 import FileUpload from "../components/file-upload";
 import GaugeIcon from "../assets/activity.svg";
 import SettingsIcon from "../assets/settings.svg";
@@ -14,46 +15,40 @@ import FileDownload from "../components/file-download";
 import Contribution from "../components/contribution";
 import BugReport from "../components/bug-report";
 import Dashboard from "../components/dashboard";
+import Onboarding from "../components/onboarding";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Menu } from "primereact/menu";
-
-
-
-const MenuPoints = {
-  DASHBOARD: "DASHBOARD",
-  HOCHLADEN: "HOCHLADEN",
-  HERUNTERLADEN: "HERUNTERLADEN",
-  ANZEIGEN: "ANZEIGEN",
-  MITWIRKUNG_BEANTRAGEN: "MITWIRKUNG_BEANTRAGEN",
-  BUG_MELDEN: "BUG_MELDEN",
-  EINSTELLUNGEN: "EINSTELLUNGEN",
-};
+import LoginButton from "../components/login-button";
+import LogoutButton from "../components/logout-button";
+import MobileDashboardMenu from "../components/mobile-dashboard-menu";
 
 export default function DataHub({t}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [selectedMenuItem, setSelectedMenuItem] = useState(
-    MenuPoints.DASHBOARD
-  );
+  const [searchParams, setSearchParams] = useSearchParams({
+    menuPage: "dashboard",
+  });
+
+  function changeMenuUrl(menuItem) {
+    setSearchParams({ menuPage: menuItem });
+  }
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      setSelectedMenuItem(MenuPoints.HOCHLADEN);
+      setSearchParams({ menuPage: "upload" });
     }
   }, [isLoading, isAuthenticated]);
 
 
   return (
     <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
-      <div className="flex flex-col lg:rounded-2xl lg:h-[80vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:bg-white p-5 text-gray-500 bg-white">
-        <div className="flex gap-4 lg:flex-col">
+      <div className="flex flex-col lg:rounded-2xl lg:h-[100%] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:bg-white p-5 text-gray-500 bg-white">
+        <div className="hidden gap-4 lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">{t('datahub.name')}</h2>
           </div>
 
           {isAuthenticated && (
-            <div className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
-              <img className="h-8 mr-2" src={user.picture} />
+            <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
               <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
                 {user.name}
               </h3>
@@ -61,11 +56,11 @@ export default function DataHub({t}) {
           )}
 
           {isAuthenticated && (
-            <div>
+            <div className="lg:my-3">
               <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
               <div
-                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-                onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}
+                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:my-3"
+                onClick={() => changeMenuUrl("dashboard")}
               >
                 <img className="h-4 mr-2" src={GaugeIcon} />
                 <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
@@ -75,7 +70,7 @@ export default function DataHub({t}) {
 
               <div
                 className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-                onClick={() => setSelectedMenuItem(MenuPoints.DASHBOARD)}
+                onClick={() => changeMenuUrl("onboarding")}
               >
                 <img className="h-4 mr-2" src={ClipboardIcon} />
                 <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
@@ -89,7 +84,7 @@ export default function DataHub({t}) {
 
           <div
             className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-            onClick={() => setSelectedMenuItem(MenuPoints.HOCHLADEN)}
+            onClick={() => changeMenuUrl("upload")}
           >
             <img className="h-4 mr-2" src={UploadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
@@ -99,7 +94,7 @@ export default function DataHub({t}) {
 
           <div
             className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-            onClick={() => setSelectedMenuItem(MenuPoints.HERUNTERLADEN)}
+            onClick={() => changeMenuUrl("download")}
           >
             <img className="h-4 mr-2" src={DownloadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
@@ -109,7 +104,7 @@ export default function DataHub({t}) {
 
           <div
             className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-            onClick={() => setSelectedMenuItem(MenuPoints.ANZEIGEN)}
+            onClick={() => changeMenuUrl("data")}
           >
             <img className="h-4 mr-2" src={ChartIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
@@ -120,9 +115,7 @@ export default function DataHub({t}) {
           <h3 className="hidden text-xs font-bold lg:block">PROJEKT</h3>
           <div
             className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-            onClick={() =>
-              setSelectedMenuItem(MenuPoints.MITWIRKUNG_BEANTRAGEN)
-            }
+            onClick={() => changeMenuUrl("contribution")}
           >
             <img className="h-4 mr-2" src={ContributionIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
@@ -132,7 +125,7 @@ export default function DataHub({t}) {
 
           <div
             className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
-            onClick={() => setSelectedMenuItem(MenuPoints.BUG_MELDEN)}
+            onClick={() => changeMenuUrl("bugs")}
           >
             <img className="h-4 mr-2" src={BugIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
@@ -146,17 +139,21 @@ export default function DataHub({t}) {
             {t('datahub.settings')}
             </h3>
           </div>
+
+          <div className="flex flex-row justify-around w-full">
+            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+          </div>
         </div>
       </div>
       <div className="w-full lg:w-[75%] mb-14 sm:mb-0">
-        {selectedMenuItem === MenuPoints.DASHBOARD && <Dashboard t={t} />}
-        {selectedMenuItem === MenuPoints.HOCHLADEN && <FileUpload t={t} />}
-        {selectedMenuItem === MenuPoints.HERUNTERLADEN && <FileDownload t={t} />}
-        {selectedMenuItem === MenuPoints.MITWIRKUNG_BEANTRAGEN && (
-          <Contribution t={t}/>
-        )}
-        {selectedMenuItem === MenuPoints.BUG_MELDEN && <BugReport t={t} />}
+        {searchParams.get("menuPage") === "dashboard" && <Dashboard t={t} />}
+        {searchParams.get("menuPage") === "onboarding" && <Onboarding />}
+        {searchParams.get("menuPage") === "upload" && <FileUpload t={t} />}
+        {searchParams.get("menuPage") === "download" && <FileDownload t={t} />}
+        {searchParams.get("menuPage") === "contribution" && <Contribution />}
+        {searchParams.get("menuPage") === "bugs" && <BugReport t={t}/>}
       </div>
+      <MobileDashboardMenu />
     </div>
   );
 }
