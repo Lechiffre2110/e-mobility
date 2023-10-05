@@ -22,7 +22,7 @@ import LogoutButton from "../components/logout-button";
 import MobileDashboardMenu from "../components/mobile-dashboard-menu";
 import MenuIcon from "../assets/ellipsis-vertical-solid.svg";
 
-export default function DataHub() {
+export default function DataHub({t}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [searchParams, setSearchParams] = useSearchParams({
     menuPage: "dashboard",
@@ -38,13 +38,14 @@ export default function DataHub() {
     }
   }, [isLoading, isAuthenticated]);
 
+
   return (
     <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
       <div className="flex flex-col lg:rounded-2xl lg:h-[85vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:bg-white p-5 text-gray-500 bg-white">
         <div className="hidden gap-4 lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
-            <h2 className="text-2xl font-bold text-gray-800">Datahub</h2>
+            <h2 className="text-2xl font-bold text-gray-800">{t('datahub.name')}</h2>
           </div>
 
           {isAuthenticated && (
@@ -80,7 +81,7 @@ export default function DataHub() {
           >
             <img className="h-4 mr-2" src={UploadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
-              Upload
+            {t('datahub.upload')}
             </h3>
           </div>
 
@@ -90,7 +91,7 @@ export default function DataHub() {
           >
             <img className="h-4 mr-2" src={DownloadIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
-              Download
+            {t('datahub.download')}
             </h3>
           </div>
 
@@ -100,7 +101,7 @@ export default function DataHub() {
           >
             <img className="h-4 mr-2" src={ChartIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Daten Anzeigen
+            {t('datahub.dataview')}
             </h3>
           </div>
 
@@ -111,7 +112,7 @@ export default function DataHub() {
           >
             <img className="h-4 mr-2" src={ContributionIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
-              Contribution
+            {t('datahub.contribution')}
             </h3>
           </div>
 
@@ -121,14 +122,14 @@ export default function DataHub() {
           >
             <img className="h-4 mr-2" src={BugIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Bug melden
+            {t('datahub.bug')}
             </h3>
           </div>
 
           <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
             <img className="h-4 mr-2" src={SettingsIcon} />
             <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
-              Einstellungen
+            {t('datahub.settings')}
             </h3>
           </div>
 
@@ -151,12 +152,12 @@ export default function DataHub() {
         </div>
       </div>
       <div className="w-full lg:w-[75%] mb-14 sm:mb-0">
-        {searchParams.get("menuPage") === "dashboard" && <Dashboard />}
+        {searchParams.get("menuPage") === "dashboard" && <Dashboard t={t} />}
         {searchParams.get("menuPage") === "onboarding" && <Onboarding />}
-        {searchParams.get("menuPage") === "upload" && <FileUpload />}
-        {searchParams.get("menuPage") === "download" && <FileDownload />}
+        {searchParams.get("menuPage") === "upload" && <FileUpload t={t} />}
+        {searchParams.get("menuPage") === "download" && <FileDownload t={t} />}
         {searchParams.get("menuPage") === "contribution" && <Contribution />}
-        {searchParams.get("menuPage") === "bugs" && <BugReport />}
+        {searchParams.get("menuPage") === "bugs" && <BugReport t={t}/>}
       </div>
       <MobileDashboardMenu />
     </div>

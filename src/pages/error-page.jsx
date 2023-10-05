@@ -2,7 +2,7 @@ import { useRouteError, Link } from "react-router-dom";
 import Plug from "../assets/plug.svg";
 import Navbar from "../components/navbar";
 
-export default function ErrorPage() {
+export default function ErrorPage({t}) {
   const error = useRouteError();
   console.error(error);
 
