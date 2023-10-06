@@ -38,8 +38,8 @@ export default function infoSection(props) {
         </div>
       </div>
 
-      <div className="my-24 w-[95%]">
-        <div className="px-8 py-5 m-auto flex flex-row items-center gap-3  w-[60%] bg-gray-100 rounded-lg">
+      <div className="my-24">
+        <div className="px-8 py-5 m-auto flex flex-row items-center gap-3  lg:w-[50%] bg-gray-100 rounded-lg">
           <div>
             <h2 className="mb-2 text-3xl font-bold text-gray-800">
               {t("landingpage.discord.header")}
@@ -74,7 +74,7 @@ export default function infoSection(props) {
               </a>
             </p>
           </div>
-          <img className="w-[30%]" src={Postbox} alt="postbox" />
+          <img className="hidden md:block w-[30%]" src={Postbox} alt="postbox" />
         </div>
       </div>
     </>
