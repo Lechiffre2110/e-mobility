@@ -38,7 +38,7 @@ export default function infoSection(props) {
         </div>
       </div>
 
-      <div className="my-24">
+      <div className="mb-4 lg:my-24">
         <div className="px-8 py-5 m-auto flex flex-row items-center gap-3  lg:w-[50%] bg-gray-100 rounded-lg">
           <div>
             <h2 className="mb-2 text-3xl font-bold text-gray-800">
