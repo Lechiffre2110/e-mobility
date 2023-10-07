@@ -137,7 +137,7 @@ export default function Navbar() {
             )}
             <li className="duration-300 ease-in w-min group">
             <button onClick={toggleLanguage}>
-            {currentLanguage === "en" ? "🇩🇪" : "🇬🇧"}
+            {currentLanguage === "en" ? "DE" : "EN"}
             </button>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
