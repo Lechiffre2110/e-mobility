@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import * as Separator from "@radix-ui/react-separator";
 import FileUpload from "../components/file-upload";
 import GaugeIcon from "../assets/activity.svg";
 import SettingsIcon from "../assets/settings.svg";
@@ -11,6 +10,7 @@ import UploadIcon from "../assets/upload-cloud.svg";
 import DownloadIcon from "../assets/download-cloud.svg";
 import ChartIcon from "../assets/bar-chart.svg";
 import HubLogo from "../assets/hub-logo.svg";
+import ZapIcon from "../assets/zap.svg";
 import FileDownload from "../components/file-download";
 import Contribution from "../components/contribution";
 import BugReport from "../components/bug-report";
@@ -20,7 +20,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../components/login-button";
 import LogoutButton from "../components/logout-button";
 import MobileDashboardMenu from "../components/mobile-dashboard-menu";
-import MenuIcon from "../assets/ellipsis-vertical-solid.svg";
+import LogoutIcon from "../assets/logout.svg";
+import QuickActions from "../components/quick-actions";
 
 export default function DataHub({t}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -38,35 +39,47 @@ export default function DataHub({t}) {
     }
   }, [isLoading, isAuthenticated]);
 
+  
+
 
   return (
-    <div className="flex flex-col-reverse justify-between pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-2xl">
-      <div className="flex flex-col lg:rounded-2xl lg:h-[85vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:bg-white p-5 text-gray-500 bg-white">
-        <div className="hidden gap-4 lg:flex lg:flex-col">
+    <div className="flex flex-col-reverse pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-xl">
+      <div className="flex flex-col lg:rounded-xl lg:h-[85vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:max-w-[300px] lg:bg-white p-5 text-gray-500 bg-white">
+        <div className="hidden gap-1 lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">{t('datahub.name')}</h2>
           </div>
 
           {isAuthenticated && (
-            <div className="lg:my-3">
+            <div className="lg:my-1">
               <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
               <div
-                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:my-3"
+                className={`my-1 flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "dashboard" && "bg-indigo-200 text-[#333]" } `}
                 onClick={() => changeMenuUrl("dashboard")}
               >
                 <img className="h-4 mr-2" src={GaugeIcon} />
-                <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+                <h3 className="font-bold flex items-center h-[25px] ">
                   Dashboard
                 </h3>
               </div>
 
               <div
-                className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+                className={`my-1 flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "quickactions" && "bg-indigo-200 text-[#333]" } `}
+                onClick={() => changeMenuUrl("quickactions")}
+              >
+                <img className="h-4 mr-2" src={ZapIcon} />
+                <h3 className="font-bold flex items-center h-[25px] ">
+                  Quick Actions
+                </h3>
+              </div>
+
+              <div
+                className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "onboarding" && "bg-indigo-200 text-[#333]" } `}
                 onClick={() => changeMenuUrl("onboarding")}
               >
                 <img className="h-4 mr-2" src={ClipboardIcon} />
-                <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+                <h3 className="font-bold flex items-center h-[25px] ">
                   Onboarding
                 </h3>
               </div>
@@ -76,64 +89,64 @@ export default function DataHub({t}) {
           <h3 className="hidden text-xs font-bold lg:block">DATEN</h3>
 
           <div
-            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "upload" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("upload")}
           >
             <img className="h-4 mr-2" src={UploadIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px] ">
             {t('datahub.upload')}
             </h3>
           </div>
 
           <div
-            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "download" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("download")}
           >
             <img className="h-4 mr-2" src={DownloadIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px]">
             {t('datahub.download')}
             </h3>
           </div>
 
           <div
-            className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "data" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("data")}
           >
             <img className="h-4 mr-2" src={ChartIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px] ">
             {t('datahub.dataview')}
             </h3>
           </div>
 
           <h3 className="hidden text-xs font-bold lg:block">PROJEKT</h3>
           <div
-            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "contribution" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("contribution")}
           >
             <img className="h-4 mr-2" src={ContributionIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] lg:hover:bg-gray-800 px-2 lg:hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px] ">
             {t('datahub.contribution')}
             </h3>
           </div>
 
           <div
-            className="flex flex-col items-center text-xs lg:text-[16px] lg:flex-row"
+            className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "bugs" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("bugs")}
           >
             <img className="h-4 mr-2" src={BugIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px] ">
             {t('datahub.bug')}
             </h3>
           </div>
 
-          <div className="hidden lg:flex flex-col items-center text-xs lg:text-[16px] lg:flex-row">
+          <div className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "settings" && "bg-indigo-200 text-[#333]" } `}>
             <img className="h-4 mr-2" src={SettingsIcon} />
-            <h3 className="font-bold rounded-[3px] flex items-center h-[25px] hover:bg-gray-800 px-2 hover:text-white">
+            <h3 className="font-bold flex items-center h-[25px] ">
             {t('datahub.settings')}
             </h3>
           </div>
 
-          <div className="absolute left-0 flex justify-around w-full px-3 pt-3 overflow-hidden border-t bottom-5">
+          <div className="absolute left-0 flex justify-around w-full px-3 pt-3 overflow-hidden bottom-4">
             {isAuthenticated ?(
               <div className="flex flex-row items-center justify-between w-full">
                 <div className="flex gap-2">
@@ -145,7 +158,7 @@ export default function DataHub({t}) {
                     <p className="text-xs truncate">{user.email}</p>
                   </div>
                 </div>
-                <img className="h-6" src={MenuIcon} />
+                <LogoutButton />
               </div>
             ) : <LoginButton />}
           </div>
@@ -153,6 +166,7 @@ export default function DataHub({t}) {
       </div>
       <div className="w-full lg:w-[75%] mb-14 sm:mb-0">
         {searchParams.get("menuPage") === "dashboard" && <Dashboard t={t} />}
+        {searchParams.get("menuPage") === "quickactions" && <QuickActions t={t} />}
         {searchParams.get("menuPage") === "onboarding" && <Onboarding />}
         {searchParams.get("menuPage") === "upload" && <FileUpload t={t} />}
         {searchParams.get("menuPage") === "download" && <FileDownload t={t} />}
