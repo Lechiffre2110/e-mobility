@@ -5,13 +5,15 @@ import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("home");
 
   function toggleMobileMenu() {
     menuOpen ? setMenuOpen(false) : setMenuOpen(true);
   }
 
-  function handleLinkClick() {
+  function handleLinkClick(page) {
     setMenuOpen(false);
+    setCurrentPage(page);
   }
 
   const { t, i18n } = useTranslation();
@@ -46,7 +48,7 @@ export default function Navbar() {
         <img src={Logo} className="w-8 h-8 lg:hidden" />
 
         <div className="lg:hidden">
-          <button className="fixed top-5 right-5" onClick={toggleMobileMenu}>
+          <button className="fixed top-5 right-5" onClick={() => setMenuOpen(!menuOpen)}>
             {!menuOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,55 +93,65 @@ export default function Navbar() {
           } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white lg:opacity-100`}
         >
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5 ">
+            {currentPage !== "home" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/" onClick={handleLinkClick}>
+              <Link to="/" onClick={() => handleLinkClick("home")}>
               {t('navbar.landingpage')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
+            {currentPage !== "authors" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/authors" onClick={handleLinkClick}>
+              <Link to="/authors" onClick={() => handleLinkClick("authors")}>
               {t('navbar.authors')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
+            {currentPage !== "cars" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/cars" onClick={handleLinkClick}>
+              <Link to="/cars" onClick={() => handleLinkClick("cars")}>
               {t('navbar.cars')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
             <li className="duration-300 ease-in w-min group">
               <Link
                 to="https://project-e-mobility.gitbook.io/projekt-e-mobility/"
                 target="_blank"
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick("")}
               >
                 {t('navbar.documentation')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            {currentPage !== "blog" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/blog" onClick={handleLinkClick}>
+              <Link to="/blog" onClick={() => handleLinkClick("blog")}>
               {t('navbar.blog')}
               </Link>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
             <li className="duration-300 ease-in w-min group">
             <button onClick={toggleLanguage}>
             {currentLanguage === "en" ? "🇩🇪" : "🇬🇧"}
             </button>
               <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            {currentPage !== "datahub" && (
             <li className="px-5 rounded-full w-max bg-[#1E1F22] text-white hover:bg-blackA11">
               <Link
                 className="font-semibold "
                 to="/datahub"
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick("datahub")}
               >
                 {t('navbar.datahub')}
               </Link>
             </li>
+            )}
           </ul>
         </nav>
       </div>
