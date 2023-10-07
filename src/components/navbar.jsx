@@ -121,7 +121,7 @@ export default function Navbar() {
               <Link
                 to="https://project-e-mobility.gitbook.io/projekt-e-mobility/"
                 target="_blank"
-                onClick={() => handleLinkClick("")}
+                onClick={() => handleLinkClick(currentPage)}
               >
                 {t('navbar.documentation')}
               </Link>
