@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export const Project = ({ project }) => {
   const { t } = useTranslation();
-  (
+  return (
   <div className="">
     <h1 className="text-3xl text-[#333] mb-2">{t('authorspage.header')}</h1>
     <p>{t('authorspage.text')}</p>
