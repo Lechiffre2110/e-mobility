@@ -98,7 +98,7 @@ export default function Navbar() {
               <Link to="/" onClick={() => handleLinkClick("home")}>
               {t('navbar.landingpage')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             )}
             {currentPage !== "authors" && (
@@ -106,7 +106,7 @@ export default function Navbar() {
               <Link to="/authors" onClick={() => handleLinkClick("authors")}>
               {t('navbar.authors')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             )}
             {currentPage !== "cars" && (
@@ -114,7 +114,7 @@ export default function Navbar() {
               <Link to="/cars" onClick={() => handleLinkClick("cars")}>
               {t('navbar.cars')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             )}
             <li className="duration-300 ease-in w-min group">
@@ -125,21 +125,21 @@ export default function Navbar() {
               >
                 {t('navbar.documentation')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             {currentPage !== "blog" && (
             <li className="duration-300 ease-in w-min group">
               <Link to="/blog" onClick={() => handleLinkClick("blog")}>
               {t('navbar.blog')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             )}
             <li className="duration-300 ease-in w-min group">
             <button onClick={toggleLanguage}>
             {currentLanguage === "en" ? "DE" : "EN"}
             </button>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
             {currentPage !== "datahub" && (
             <li className="px-5 rounded-full w-max bg-[#1E1F22] text-white hover:bg-blackA11">
