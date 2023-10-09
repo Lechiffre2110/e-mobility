@@ -200,6 +200,22 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
     );
   }, [email, name, description]);
 
+  async function submitForm(event) {
+    const BASE_URL = "http://localhost:5555/api";
+    event.preventDefault();
+    
+    //replace spaces with %20
+    let link = `http://localhost:5173/datahub?menuPage=upload&email=${email}&name=${name}&description=${description}`;
+    link = link.replace(/ /g, "%20"); 
+    const res = await axios.post(`${BASE_URL}/quickactions/invite`, {
+      email: email,
+      name: name,
+      link: link,
+    });
+    console.log(res);
+  }
+    
+
   function copyLink() {
     navigator.clipboard.writeText(link);
   }
