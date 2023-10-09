@@ -45,7 +45,7 @@ export default function DataHub({t}) {
   return (
     <div className="flex flex-col-reverse pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-xl">
       <div className="flex flex-col lg:rounded-xl lg:h-[85vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:max-w-[300px] lg:min-h-[650px] lg:bg-white p-5 text-gray-500 bg-white">
-        <div className="hidden lg:flex lg:flex-col">
+        <div className="hidden gap-1 lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">{t('datahub.name')}</h2>
@@ -153,7 +153,7 @@ export default function DataHub({t}) {
                   <div className="flex justify-center items-center bg-gray-200 rounded-full h-[40px] w-[40px] font-bold">
                     <p>YA</p>
                   </div>
-                  <div className="max-w-[80%]">
+                  <div className="max-w-[170px]">
                     <h4 className="text-sm font-semibold truncate">{user.name}</h4>
                     <p className="text-xs truncate">{user.email}</p>
                   </div>
