@@ -49,7 +49,7 @@ export default function infoSection(props) {
             </p>
             <a
               className="text-blue-500 hover:text-blue-800"
-              href="https://discord.gg/5k8X7pY"
+              href="https://discord.gg/ZVVHR3eWpG"
             >
               <button className="flex items-center pl-3 pr-1 text-white rounded-lg bg-[#5865F2] mt-2 mb-10">
                 {t("landingpage.discord.button")}
@@ -61,7 +61,7 @@ export default function infoSection(props) {
                 />
               </button>
             </a>
-            <p className="mb-2 font-bold" href="https://www.discord.com">
+            <p className="mb-2 font-bold">
               {t("landingpage.email.description")}
             </p>
             <p>
