@@ -11,6 +11,7 @@ import SuggestionIcon from "../assets/message.svg";
 import DataTable from "./data-table";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTranslation } from "react-i18next";
 
 
 export default function Dashboard() {
@@ -23,6 +24,7 @@ export default function Dashboard() {
   const [bugCount, setBugCount] = useState(0);
   const [dataCount, setDataCount] = useState(0);
   const [pageReload, setPageReload] = useState(false);
+  const { t } = useTranslation();
   const BASE_URL = "http://localhost:5555/api";
 
   const getBugs = async () => {
@@ -101,27 +103,27 @@ const acceptOnboardingRequest = async (id) => {
 
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 w-[97%] mx-[2%]">
         <DashboardStat
-          title="Mitwirkende"
+          title={t('datahub.dashboard.contributors')}
           value={contributorCount}
           icon={UserIcon}
           order="1"
         />
         <DashboardStat
-          title="Datensätze"
+          title={t('datahub.dashboard.datasets')}
           value={dataCount}
           icon={DataIcon}
           order="2"
         />
         <DashboardStat title="Bugs" value={bugCount} icon={BugIcon} order="3" />
         <DashboardStat
-          title="Anfragen"
+          title={t('datahub.dashboard.requests')}
           value={requestCount}
           icon={RequestIcon}
           order="4"
         />
         <div className="hidden lg:block">
         <DashboardStat
-          title="Vorschläge"
+          title={t('datahub.dashboard.suggestions')}
           value="7"
           icon={SuggestionIcon}
           order="4"
@@ -132,12 +134,12 @@ const acceptOnboardingRequest = async (id) => {
       <div className="grid lg:grid-cols-3 gap-2 ml-[2%] w-[97%] overflow-hidden">
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border lg:border-0 rounded-xl">
           <div className="w-full px-5">
-            <h2 className="mb-4 font-bold text-gray-500 text-md">Requests</h2>
+            <h2 className="mb-4 font-bold text-gray-500 text-md">{t('datahub.dashboard.requests')}</h2>
             <div className="flex flex-col justify-between w-full max-h-[250px] overflow-y-auto">
               {requestCount === 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="text-[14px] font-semibold text-gray-500">
-                    Keine Anfragen vorhanden
+                  {t('datahub.dashboard.noRequests')}
                   </h3>
                 </div>
               )}
@@ -173,11 +175,11 @@ const acceptOnboardingRequest = async (id) => {
 
         <div className="flex flex-row justify-around h-auto px-5 py-5 mt-3 bg-white border rounded-xl lg:border-0">
           <div className="w-full">
-            <h2 className="mb-4 font-bold text-gray-500 text-md">Bugs</h2>
+            <h2 className="mb-4 font-bold text-gray-500 text-md">{t('datahub.dashboard.bugs')}</h2>
             <div className="flex flex-col text-[14px] font-semibold items-center max-h-[250px] overflow-y-auto">
               {bugCount === 0 && (
                 <div className="flex flex-col items-center justify-center">
-                  <h3 className="text-gray-500">Keine Bugs vorhanden</h3>
+                  <h3 className="text-gray-500">{t('datahub.dashboard.noBugs')}</h3>
                 </div>
               )}
               {bugs && bugs.map((bug) => {
@@ -213,13 +215,13 @@ const acceptOnboardingRequest = async (id) => {
         <div className="flex flex-row justify-around h-auto py-5 mt-3 text-[#333] bg-white border rounded-xl lg:border-0">
           <div className="w-full px-5">
             <h2 className="mb-4 font-bold text-gray-500 text-md">
-              Onboarding Requests
+            {t('datahub.dashboard.onboarding')}
             </h2>
             <div className="flex flex-col justify-between w-full">
               {onboardingRequests && onboardingRequests.length === 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="text-[14px] font-semibold text-gray-500">
-                    Keine Anfragen vorhanden
+                  {t('datahub.dashboard.noOnboarding')}
                   </h3>
                 </div>
               )}
@@ -234,7 +236,7 @@ const acceptOnboardingRequest = async (id) => {
                         className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[30px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                         onClick={() => acceptOnboardingRequest(request._id)}
                       >
-                        Senden
+                        {t('button.send')}
                       </button>
                     </div>
                     <HorizontalSeparator />

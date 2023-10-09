@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Form from "@radix-ui/react-form";
-import { use } from "i18next";
 import HorizontalSeparator from "./horizontal-separator";
 
 export default function QuickActions() {
@@ -31,12 +30,12 @@ export default function QuickActions() {
         Quick Actions
       </h2>
       <div className="grid lg:grid-cols-3 grid-rows-3 ml-[2%] w-[97%] rounded-2xl mt-4 gap-4">
-        <QuickActionButton action={scheduleMeeting} title="Meeting erstellen" />
+        <QuickActionButton action={scheduleMeeting} title={t('datahub.quickactions.scheduleMeeting')} />
         <QuickActionButton
           action={sendInvitation}
-          title="Upload Einladung senden"
+          title={t('datahub.quickactions.uploadInvite')}
         />
-        <QuickActionButton action={bookGarage} title="Fahrzeughalle buchen" />
+        <QuickActionButton action={bookGarage} title={t('datahub.quickactions.bookGarage')} />
       </div>
 
       <MeetingForm open={open} setOpen={setOpen} submitForm={setOpen} />
@@ -66,6 +65,8 @@ function QuickActionButton({ action, title }) {
 }
 
 function MeetingForm({ open, setOpen }) {
+  const { t } = useTranslation();
+  
   async function submitForm(event) {
     const BASE_URL = "http://localhost:5555/api";
     
@@ -89,22 +90,22 @@ function MeetingForm({ open, setOpen }) {
         <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
-            Schedule Meeting
+          {t('datahub.quickactions.scheduleMeeting')}
           </Dialog.Title>
           <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
-            Erstelle ein Meeting mit den ausgewählten Teilnehmern
+          {t('datahub.quickactions.scheduleMeetingDescription')}
           </Dialog.Description>
           <Form.Root onSubmit={submitForm}>
             <Form.Field name="title" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  TITEL
+                {t('datahub.quickactions.scheduleMeetingTtile')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte geben Sie dem Meeting einen Titel
+                  {t('datahub.quickactions.scheduleMeetingError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -112,7 +113,7 @@ function MeetingForm({ open, setOpen }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
                   required
-                  placeholder="Gib den Titel des Meetings ein"
+                  placeholder={t('datahub.quickactions.scheduleMeetingTitlePlaceholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -120,13 +121,13 @@ function MeetingForm({ open, setOpen }) {
             <Form.Field name="date" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  DATUM
+                {t('datahub.quickactions.date')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib ein Datum an.
+                  {t('datahub.quickactions.dateError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -134,7 +135,7 @@ function MeetingForm({ open, setOpen }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="date"
                   onChange={(e) => setStartDate(e.target.value)}
-                  placeholder="Gib ein Datum ein"
+                  placeholder={t('datahub.quickactions.datePlaceholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -142,13 +143,13 @@ function MeetingForm({ open, setOpen }) {
             <Form.Field name="time" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  UHRZEIT
+                {t('datahub.quickactions.time')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib eine Uhrzeit an.
+                  {t('datahub.quickactions.timeError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -156,7 +157,7 @@ function MeetingForm({ open, setOpen }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="time"
                   onChange={(e) => setStartDate(e.target.value)}
-                  placeholder="Gib eine Uhrzeit ein"
+                  placeholder={t('datahub.quickactions.timeError')}
                 />
               </Form.Control>
             </Form.Field>
@@ -167,7 +168,7 @@ function MeetingForm({ open, setOpen }) {
                   type="submit"
                   className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                 >
-                  Einladung Senden
+                  {t('button.send')}
                 </button>
               </Form.Submit>
             </div>
@@ -187,6 +188,7 @@ function MeetingForm({ open, setOpen }) {
 }
 
 function UploadInviteForm({ open, setOpen, submitForm }) {
+  const { t } = useTranslation();
   const [link, setLink] = useState(
     "http://localhost:5173/datahub?menuPage=upload"
   );
@@ -224,22 +226,22 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
         <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
-            Upload Einladung senden
+          {t('datahub.quickactions.uploadInvite')}
           </Dialog.Title>
           <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
-            Sende eine Einladung zum Upload von Daten
+          {t('datahub.quickactions.uploadInviteDescription')}
           </Dialog.Description>
           <Form.Root onSubmit={submitForm}>
             <Form.Field name="email" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  EMAIL*
+                {t('datahub.quickactions.email')}*
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte geben Sie die Email des Empfängers ein
+                  {t('datahub.quickactions.emailError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -247,7 +249,7 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="email"
                   required
-                  placeholder="Bitte geben Sie die Email an"
+                  placeholder={t('datahub.quickactions.emailPlaceholder')}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Control>
@@ -256,20 +258,20 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
             <Form.Field name="name" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  NAME*
+                {t('datahub.quickactions.name')}*
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte geben Sie den Namen des Empfängers ein
+                  {t('datahub.quickactions.nameError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
-                  placeholder="Geben Sie den Namen des Empfängers ein"
+                  placeholder={t('datahub.quickactions.recipient')}
                   required
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -279,14 +281,14 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
             <Form.Field name="description" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  BESCHREIBUNG
+                {t('datahub.quickactions.description')}
                 </Form.Label>
               </div>
               <Form.Control asChild>
                 <textarea
                   className="box-border w-full inline-flex appearance-none items-center justify-center rounded-[8px] p-[10px] text-[15px] leading-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6] outline-none resize-none"
                   rows="4"
-                  placeholder="Geben Sie bei Bedarf die Beschreibung des Datensatzes ein"
+                  placeholder={t('datahub.quickactions.descriptionError')}
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </Form.Control>
@@ -302,7 +304,7 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
                 <input
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="text"
-                  placeholder="Geben Sie den Namen des Empfängers ein"
+                  placeholder={t('datahub.quickactions.recipient')}
                   value={link}
                 />
               </Form.Control>
@@ -310,14 +312,14 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
 
             <div className="mt-[25px] flex justify-end gap-2">
               <button className="bg-blue4 text-blue11 hover:bg-blue5 focus:shadow-blue7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none" onClick={copyLink}>
-                Link kopieren
+              {t('datahub.quickactions.copyLink')}
               </button>
               <Form.Submit asChild>
                 <button
                   type="submit"
                   className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                 >
-                  Einladung Senden
+                  {t('button.send')}
                 </button>
               </Form.Submit>
             </div>
@@ -337,6 +339,7 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
 }
 
 function GarageForm({ open, setOpen, submitForm }) {
+  const { t } = useTranslation();
   const [emailText, setEmailText] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -365,22 +368,22 @@ function GarageForm({ open, setOpen, submitForm }) {
         <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
-            Fahrzeughalle buchen
+          {t('datahub.quickactions.bookGarage')}
           </Dialog.Title>
           <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
-            Buche die Fahrzeughalle zur gewünschten Zeit
+          {t('datahub.quickactions.bookGarageDescription')}
           </Dialog.Description>
           <Form.Root onSubmit={submitForm}>
             <Form.Field name="date" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  DATUM
+                {t('datahub.quickactions.date')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib ein Datum an.
+                  {t('datahub.quickactions.dateError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -388,7 +391,7 @@ function GarageForm({ open, setOpen, submitForm }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="date"
                   onChange={(e) => setDate(e.target.value)}
-                  placeholder="Gib ein Datum ein"
+                  placeholder={t('datahub.quickactions.datePlaceholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -396,13 +399,13 @@ function GarageForm({ open, setOpen, submitForm }) {
             <Form.Field name="Uhrzeit" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  UHRZEIT
+                {t('datahub.quickactions.time')}
                 </Form.Label>
                 <Form.Message
                   className="text-[13px] text-gray-700 opacity-[0.8]"
                   match="valueMissing"
                 >
-                  Bitte gib eine Uhrzeit an.
+                  {t('datahub.quickactions.timeError')}
                 </Form.Message>
               </div>
               <Form.Control asChild>
@@ -410,7 +413,7 @@ function GarageForm({ open, setOpen, submitForm }) {
                   className="box-border w-full inline-flex h-[35px] items-center justify-center rounded-[8px] px-[10px] text-[15px] leading-none text-gray outline-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6]"
                   type="time"
                   onChange={(e) => setTime(e.target.value)}
-                  placeholder="Gib eine Uhrzeit ein"
+                  placeholder={t('datahub.quickactions.timePlaceholder')}
                 />
               </Form.Control>
             </Form.Field>
@@ -418,14 +421,14 @@ function GarageForm({ open, setOpen, submitForm }) {
             <Form.Field name="description" className="my-5">
               <div className="flex items-baseline justify-between">
                 <Form.Label className="text-mauve11 text-[12px] mb-2">
-                  EMAIL TEXT
+                {t('datahub.quickactions.emailText')}
                 </Form.Label>
               </div>
               <Form.Control asChild>
                 <textarea
                   className="box-border w-full inline-flex appearance-none items-center justify-center rounded-[8px] p-[10px] text-[15px] leading-none hover:border-gray-400 focus:border-gray-500 bg-[#f6f6f6] outline-none resize-none"
                   rows="10"
-                  placeholder="Email Text"
+                  placeholder={t('datahub.quickactions.emailText')}
                   value={emailText}
                 />
               </Form.Control>
@@ -437,7 +440,7 @@ function GarageForm({ open, setOpen, submitForm }) {
                   type="submit"
                   className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                 >
-                  Halle buchen
+                  {t('datahub.quickactions.bookGarageButton')}
                 </button>
               </Form.Submit>
             </div>
