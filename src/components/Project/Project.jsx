@@ -13,7 +13,7 @@ export const Project = ({ project }) => {
     <HorizontalSeparator />
     <div className="authors">
       <ContributorList
-        title="Autor"
+        title={t('authorspage.author')}
         contributors={project.authors}
         color="red"
       />
@@ -21,7 +21,7 @@ export const Project = ({ project }) => {
     <HorizontalSeparator />
     <div className="professors">
       <ContributorList
-        title="Professoren"
+        title={t('authorspage.professors')}
         contributors={project.professors}
         color="violet"
       />
@@ -29,7 +29,7 @@ export const Project = ({ project }) => {
     <HorizontalSeparator />
     <div className="contributors">
       <ContributorList
-        title="Studenten"
+        title={t('authorspage.students')}
         contributors={project.contributors}
         color="green"
       />
