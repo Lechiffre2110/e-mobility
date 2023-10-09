@@ -8,6 +8,7 @@ import classnames from "classnames";
 import DropdownMenu from "./dropdown-menu";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function fileUpload() {
   const [open, setOpen] = useState(false);
@@ -15,6 +16,11 @@ export default function fileUpload() {
   const [toastDescription, setToastDescription] = useState("");
   const [selectedCar, setSelectedCar] = useState("");
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams({
+    email: "",
+    name: "",
+    description: ""
+  });
 
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
@@ -99,6 +105,7 @@ export default function fileUpload() {
                   type="email"
                   required
                   placeholder={t('datahub.upload.email.placeholder')}
+                  value={searchParams.get("email")}
                 />
               </Form.Control>
             </Form.Field>
@@ -128,6 +135,7 @@ export default function fileUpload() {
                   type="text"
                   required
                   placeholder={t('datahub.upload.name.placeholder')}
+                  value={searchParams.get("name")}
                 />
               </Form.Control>
             </Form.Field>
@@ -150,6 +158,7 @@ export default function fileUpload() {
                   required
                   rows="4"
                   placeholder={t('datahub.upload.description.placeholder')}
+                  value={searchParams.get("description")}
                 />
               </Form.Control>
             </Form.Field>
