@@ -53,7 +53,7 @@ export default function DataHub({t}) {
 
           {isAuthenticated && (
             <div className="lg:my-1">
-              <h3 className="hidden text-xs font-bold lg:block">ADMIN</h3>
+              <h3 className="hidden text-xs font-bold lg:block">{t('datahub.admin')}</h3>
               <div
                 className={`my-1 flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "dashboard" && "bg-indigo-200 text-[#333]" } `}
                 onClick={() => changeMenuUrl("dashboard")}
@@ -86,7 +86,7 @@ export default function DataHub({t}) {
             </div>
           )}
 
-          <h3 className="hidden text-xs font-bold lg:block">DATEN</h3>
+          <h3 className="hidden text-xs font-bold lg:block">{t('datahub.data')}</h3>
 
           <div
             className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "upload" && "bg-indigo-200 text-[#333]" } `}
@@ -118,7 +118,7 @@ export default function DataHub({t}) {
             </h3>
           </div>
 
-          <h3 className="hidden text-xs font-bold lg:block">PROJEKT</h3>
+          <h3 className="hidden text-xs font-bold lg:block">{t('datahub.project')}</h3>
           <div
             className={`flex flex-col items-center text-xs lg:text-[16px] lg:flex-row lg:hover:bg-indigo-100 lg:py-2 lg:px-3 lg:hover:text-indigo-800 rounded-md  ${searchParams.get("menuPage") === "contribution" && "bg-indigo-200 text-[#333]" } `}
             onClick={() => changeMenuUrl("contribution")}
