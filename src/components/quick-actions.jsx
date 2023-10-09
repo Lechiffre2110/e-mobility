@@ -30,7 +30,7 @@ export default function QuickActions() {
       <h2 className="h-16 text-2xl bg-white w-[97%] ml-[2%] rounded-2xl flex items-center px-5 text-gray-700 font-bold border lg:border-0">
         Quick Actions
       </h2>
-      <div className="grid grid-rows-3 ml-[2%] w-[97%] rounded-2xl mt-4 gap-4">
+      <div className="grid lg:grid-cols-3 grid-rows-3 ml-[2%] w-[97%] rounded-2xl mt-4 gap-4">
         <QuickActionButton action={scheduleMeeting} title="Meeting erstellen" />
         <QuickActionButton
           action={sendInvitation}
@@ -57,7 +57,7 @@ export default function QuickActions() {
 function QuickActionButton({ action, title }) {
   return (
     <div
-      className="flex flex-col items-center justify-center h-20 text-lg bg-white border cursor-pointer rounded-2xl hover:bg-indigo-100 hover:font-semibold lg:border-0"
+      className="flex flex-col items-center justify-center h-20 text-lg bg-white border cursor-pointer rounded-2xl hover:bg-indigo-100 lg:border-0"
       onClick={action}
     >
       <h4>{title}</h4>
