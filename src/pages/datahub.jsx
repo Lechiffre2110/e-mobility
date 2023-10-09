@@ -45,7 +45,7 @@ export default function DataHub({t}) {
   return (
     <div className="flex flex-col-reverse pb-5 lg:p-5 lg:bg-gray-100 sm:flex-row rounded-xl">
       <div className="flex flex-col lg:rounded-xl lg:h-[85vh] fixed lg:relative bottom-0 left-0 lg:w-[25%] lg:max-w-[300px] lg:min-h-[650px] lg:bg-white p-5 text-gray-500 bg-white">
-        <div className="hidden gap-1 lg:flex lg:flex-col">
+        <div className="hidden lg:flex lg:flex-col">
           <div className="hidden gap-4 mb-5 lg:flex lg:flex-row">
             <img className="h-8" src={HubLogo} />
             <h2 className="text-2xl font-bold text-gray-800">{t('datahub.name')}</h2>
