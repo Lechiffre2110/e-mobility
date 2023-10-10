@@ -4,10 +4,17 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import HorizontalSeparator from "./horizontal-separator";
 
+/**
+ * Component that displays a dialog on the dashboard with the bug's details and allows to resolve it.
+ * @param {*} props 
+ * @returns 
+ */
 export default function bugDialog(props) {
 const [open, setOpen] = useState(false);
 
-
+/**
+ * Function that resolves a bug in the backend.
+ */
 const resolveBug = async () => {
   const BASE_URL = "http://localhost:5555/api";
   try {
