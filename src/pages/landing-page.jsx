@@ -4,7 +4,15 @@ import InfoSection from "../components/info-section";
 import Lottie from "lottie-react";
 import CarAnimation from "../assets/car-animation.json";
 
-function LandingPage({ props, t }) {
+/**
+ * Component for the landing page.
+ * @param {*} t translation function
+ */
+function LandingPage({ t }) {
+
+  /**
+   * Scrolls to the info section.
+   */
   const scrollDown = () => {
     document.getElementById("info-section").scrollIntoView({
       behavior: "smooth",

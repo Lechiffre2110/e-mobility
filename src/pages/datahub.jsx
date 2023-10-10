@@ -23,19 +23,32 @@ import MobileDashboardMenu from "../components/mobile-dashboard-menu";
 import LogoutIcon from "../assets/logout.svg";
 import QuickActions from "../components/quick-actions";
 
+/**
+ * Component for the Project Hub page.
+ * @param {*} t translation function
+ */
 export default function DataHub({t}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [searchParams, setSearchParams] = useSearchParams({
     menuPage: "dashboard",
   });
 
+  /**
+   * Set the menu page url based on the menu item clicked.
+   * @param {String} menuItem 
+   */
   function changeMenuUrl(menuItem) {
     setSearchParams({ menuPage: menuItem });
   }
 
+  /**
+   * Set the menu page url to upload if the user is not authenticated or to dashboard otherwise.
+   */
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       setSearchParams({ menuPage: "upload" });
+    } else {
+      setSearchParams({ menuPage: "dashboard" });
     }
   }, [isLoading, isAuthenticated]);
 
