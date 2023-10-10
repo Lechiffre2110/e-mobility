@@ -187,7 +187,7 @@ function MeetingForm({ open, setOpen }) {
   );
 }
 
-function UploadInviteForm({ open, setOpen, submitForm }) {
+function UploadInviteForm({ open, setOpen }) {
   const { t } = useTranslation();
   const [link, setLink] = useState(
     "http://localhost:5173/datahub?menuPage=upload"
@@ -338,14 +338,13 @@ function UploadInviteForm({ open, setOpen, submitForm }) {
   );
 }
 
-function GarageForm({ open, setOpen, submitForm }) {
+function GarageForm({ open, setOpen }) {
   const { t } = useTranslation();
   const [emailText, setEmailText] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    //format the date to dd.mm.yyyy
     let dateArray = date.split("-");
     let formattedDate = `${dateArray[2]}.${dateArray[1]}.${dateArray[0]}`;
     setEmailText(
