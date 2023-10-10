@@ -4,6 +4,10 @@ import LinkedInIcon from "../assets/linkedin.svg";
 import GitHubIcon from "../assets/github.svg";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component for displaying a list of contributors in the authors page.
+ * @param {*} props a list of contributors
+ */
 export default function ContributorList(props) {
   const { t } = useTranslation();
   const color = props.color;

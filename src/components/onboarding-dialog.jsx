@@ -5,10 +5,17 @@ import * as Form from "@radix-ui/react-form";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component for the onboarding dialog.
+ */
 export default function OnboardingDialog() {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
+  /**
+   * Submits the onboarding form.
+   * @param {*} event the form event
+   */
   async function submitForm(event) {
     const BASE_URL = "http://localhost:5555/api";
     

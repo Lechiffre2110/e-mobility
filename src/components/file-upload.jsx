@@ -10,6 +10,10 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+/**
+ * Component for the file upload form in the project hub.
+ * @returns 
+ */
 export default function fileUpload() {
   const [open, setOpen] = useState(false);
   const [toastTitle, setToastTitle] = useState("");
@@ -22,13 +26,17 @@ export default function fileUpload() {
     description: ""
   });
 
+  //Array of cars for the dropdown menu
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
     { name: "Toyota Mirai", value: "Toyota Mirai" },
     { name: t('datahub.upload.car.dropdown.others'), value: t('datahub.upload.car.dropdown.others') },
   ];
 
-
+  /**
+   * Function to submit the file and the corresponding data to the backend.
+   * @param {*} event
+   */
   function submitForm(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -40,6 +48,11 @@ export default function fileUpload() {
     event.target.reset();
   }
 
+  /**
+   * Function to toggle the toast.
+   * @param {*} title the title of the toast
+   * @param {*} shouldOpen whether the toast should be open or not
+   */
   function toggleToast(title, shouldOpen = null) {
     setToastTitle(title);
     if (shouldOpen !== null) {
@@ -49,6 +62,10 @@ export default function fileUpload() {
     }
   }
 
+  /**
+   * Function to upload the data to the backend.
+   * @param {*} formData the data to be uploaded 
+   */
   async function uploadData(formData) {
     const BASE_URL = "http://localhost:5555/api";
     try {

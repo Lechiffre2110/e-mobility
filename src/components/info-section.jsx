@@ -1,9 +1,11 @@
-import HorizontalSeparator from "./horizontal-separator";
 import { useTranslation } from "react-i18next";
 import Road from "../assets/road.svg";
 import Postbox from "../assets/postbox.png";
 
-export default function infoSection(props) {
+/**
+ * Component for displaying the info section on the landing page.
+ */
+export default function infoSection() {
   const { t } = useTranslation();
   return (
     <>

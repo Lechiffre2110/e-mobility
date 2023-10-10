@@ -6,20 +6,26 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Form from "@radix-ui/react-form";
 import HorizontalSeparator from "./horizontal-separator";
 
+/**
+ * Component for the quick actions section in the dashboard.
+ */
 export default function QuickActions() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [uploadOpen, setUploadOpen] = useState(false);
   const [garageOpen, setGarageOpen] = useState(false);
 
+  //open meeting dialog
   function scheduleMeeting() {
     setOpen(true);
   }
 
+  //open upload invite dialog
   function sendInvitation() {
     setUploadOpen(true);
   }
 
+  //open book garage dialog
   function bookGarage() {
     setGarageOpen(true);
   }
@@ -53,6 +59,11 @@ export default function QuickActions() {
   );
 }
 
+/**
+ * Component for the quick action buttons.
+ * @param {*} action the action to be executed when the button is clicked
+ * @param {*} title the title of the button 
+ */
 function QuickActionButton({ action, title }) {
   return (
     <div
@@ -64,9 +75,18 @@ function QuickActionButton({ action, title }) {
   );
 }
 
+/**
+ * Component for the meeting dialog.
+ * @param {*} open state of the dialog
+ * @param {*} setOpen function to set the open state
+ */
 function MeetingForm({ open, setOpen }) {
   const { t } = useTranslation();
   
+  /**
+   * Function to submit the form
+   * @param {*} event the event
+   */
   async function submitForm(event) {
     const BASE_URL = "http://localhost:5555/api";
     
@@ -187,6 +207,11 @@ function MeetingForm({ open, setOpen }) {
   );
 }
 
+/**
+ * Component for the garage dialog.
+ * @param {*} open state of the dialog
+ * @param {*} setOpen function to set the open state
+ */
 function UploadInviteForm({ open, setOpen }) {
   const { t } = useTranslation();
   const [link, setLink] = useState(
@@ -195,7 +220,10 @@ function UploadInviteForm({ open, setOpen }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
+  
+  /**
+   * set link based on email, name and description
+   */
   useEffect(() => {
     //set link and replace spaces with %20
     let link = `http://localhost:5173/datahub?menuPage=upload&email=${email}&name=${name}&description=${description}`;
@@ -203,6 +231,10 @@ function UploadInviteForm({ open, setOpen }) {
     setLink(link);
   }, [email, name, description]);
 
+  /**
+   * Function to submit the form
+   * @param {*} event the form event 
+   */
   async function submitForm(event) {
     const BASE_URL = "http://localhost:5555/api";
     event.preventDefault();
@@ -216,6 +248,9 @@ function UploadInviteForm({ open, setOpen }) {
   }
     
 
+  /**
+   * Function to copy the link to the clipboard
+   */
   function copyLink() {
     navigator.clipboard.writeText(link);
   }

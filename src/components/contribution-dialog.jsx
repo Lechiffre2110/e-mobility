@@ -3,9 +3,16 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import HorizontalSeparator from "./horizontal-separator";
 import axios from "axios";
 
+/**
+ * Contribution Dialog Component for the Dashboard
+ * @param {*} props
+ */
 export default function contributionDialog(props) {
   const BASE_URL = "http://localhost:5555/api";
-  
+
+  /**
+   * Decline the request of the contributor passed in props in the backend.
+   */
   const declineRequest = async () => {
     try {
       await axios.delete(`${BASE_URL}/contributors/${props.id}/decline`);
@@ -15,6 +22,9 @@ export default function contributionDialog(props) {
     props.reload();
   };
 
+  /**
+   * Accept the request of the contributor passed in props in the backend.
+   */
   const acceptRequest = async () => {
     try {
       await axios.put(`${BASE_URL}/contributors/${props.id}/approve`);

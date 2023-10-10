@@ -2,6 +2,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useTranslation } from "react-i18next";
 import LogoutIcon from "../assets/logout.svg";
 
+/**
+ * Component for the logout button
+ * Uses the Auth0 hook to logout the user
+ */
 const LogoutButton = () => {
   const { logout } = useAuth0();
   const { t } = useTranslation();

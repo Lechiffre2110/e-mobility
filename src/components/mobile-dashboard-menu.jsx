@@ -6,17 +6,29 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./login-button";
 import LogoutButton from "./logout-button";
 
+/**
+ * Component for the mobile dashboard menu.
+ */
 export default function MobileDashboardMenu() {
+  // store the menu page url in the url search params
   const [searchParams, setSearchParams] = useSearchParams({
     menuPage: "dashboard",
   });
   const [showMenu, setShowMenu] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  /**
+   * Toggle the menu.
+   * If the menu is shown, hide it and vice versa.
+   */
   function toggleMenu() {
     showMenu ? setShowMenu(false) : setShowMenu(true);
   }
 
+  /**
+   * Set the menu page url based on the menu item clicked.
+   * @param {String} menuItem the menu item clicked
+   */
   function changeMenuUrl(menuItem) {
     setSearchParams({ menuPage: menuItem });
   }

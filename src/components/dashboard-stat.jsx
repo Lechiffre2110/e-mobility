@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import * as Progress from "@radix-ui/react-progress";
+
+/**
+ * Component for the dashboard statistics.
+ * @param {*} props icon, title and value of the statistic
+ */
 export default function DashboardStat(props) {
   const [progress, setProgress] = useState(5);
 
+  /**
+   * Update the progress bar based on the value.
+   */
   useEffect(() => {
     const timer = setTimeout(() => setProgress(props.value*5), props.order * 200);
     return () => clearTimeout(timer);

@@ -1,3 +1,7 @@
+/**
+ * Component for the VW ID3 info
+ * @param {*} t translation function
+ */
 export default function ID3Info({t}) {
   return (
     <>

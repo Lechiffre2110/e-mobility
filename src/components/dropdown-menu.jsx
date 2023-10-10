@@ -7,9 +7,16 @@ import {
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
 
+/**
+ * Component with a custom dropdown menu based on radix-ui.
+ */
 export default function DropdownMenu(props) {
   const [selectedValue, setSelectedValue] = useState(null);
 
+  /**
+   * Function to handle the value change of the dropdown menu.
+   * @param {*} value the selected value 
+   */
   const handleValueChange = (value) => {
     setSelectedValue(value);
     if (props.onChange) props.onChange(value);

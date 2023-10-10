@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component for the navbar.
+ */
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("home");
 
-  function toggleMobileMenu() {
-    menuOpen ? setMenuOpen(false) : setMenuOpen(true);
-  }
-
+  /**
+   * Set the current page based on the menu item clicked.
+   * @param {String} page the menu item clicked
+   */
   function handleLinkClick(page) {
     setMenuOpen(false);
     setCurrentPage(page);
@@ -18,11 +21,19 @@ export default function Navbar() {
 
   const { t, i18n } = useTranslation();
 
+  /**
+   * Function to change the language of the page.
+   * @param {*} language the language to change to (en or de)
+   */
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
   const [currentLanguage, setCurrentLanguage] = useState("de"); 
 
+  /**
+   * Toggle the language of the page.
+   * If the current language is english, change it to german and vice versa.
+   */
   const toggleLanguage = () => {
     if (currentLanguage === "en") {
       changeLanguage("de");

@@ -4,7 +4,9 @@ import DropdownMenu from "./dropdown-menu";
 import { useTranslation } from "react-i18next";
 
 
-
+/**
+ * Component for the bug report form in the project hub.
+ */
 export default function BugReport() {
   const { t } = useTranslation();
   const [selectedCar, setSelectedCar] = useState("");
@@ -15,6 +17,10 @@ export default function BugReport() {
     { name: t('datahub.bug.car.dropdown.others'), value: "Sonstiges" },
   ];
 
+  /**
+   * Submit the bug report form to the backend.
+   * @param {*} event
+   */
   const submitBug = async (event) => {
     const BASE_URL = "http://localhost:5555/api";
     event.preventDefault();
@@ -23,7 +29,7 @@ export default function BugReport() {
     formData.append("model", selectedCar);
 
     try {
-      //axios not working here
+      //axios not working here, thats why fetch is used
       await fetch(`${BASE_URL}/bugs`, {
         method: "POST",
         body: formData,

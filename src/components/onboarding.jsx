@@ -2,10 +2,16 @@ import axios from "axios";
 import * as Form from "@radix-ui/react-form";
 import { useTranslation } from "react-i18next";
 
-
+/**
+ * Component for the onboarding page in the project hub
+ */
 export default function Onboarding() {
     const { t } = useTranslation();
 
+    /**
+     * Function for submitting the form for manual onboarding to the backend.
+     * @param {*} event the form event
+     */
     async function submitForm(event) {
         const BASE_URL = "http://localhost:5555/api";
         
@@ -18,6 +24,10 @@ export default function Onboarding() {
         console.log(res);
       }
 
+    /**
+     * Function for submitting the form for bulk onboarding to the backend.
+     * @param {*} event the form event
+     */
     async function submitBulkForm(event) {
         const BASE_URL = "http://localhost:5555/api";
         

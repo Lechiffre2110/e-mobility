@@ -1,6 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component for the login button
+ * Uses the Auth0 hook to login the user
+ */
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   const { t } = useTranslation();
