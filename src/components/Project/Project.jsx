@@ -3,7 +3,10 @@ import HorizontalSeparator from "../horizontal-separator";
 import "./project.css";
 import { useTranslation } from "react-i18next";
 
-
+/**
+ * Component that displays the project's authors, professors and contributors.
+ * @param {*} project object containing the project's authors, professors and contributors.
+ */
 export const Project = ({ project }) => {
   const { t } = useTranslation();
   return (
