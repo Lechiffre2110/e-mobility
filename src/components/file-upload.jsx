@@ -1,28 +1,39 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState } from "react";
 import { Button } from "primereact/button";
-import { CheckIcon } from "@radix-ui/react-icons";
 import * as Form from "@radix-ui/react-form";
 import * as Toast from "@radix-ui/react-toast";
-import * as Select from "@radix-ui/react-select";
-import classnames from "classnames";
 import DropdownMenu from "./dropdown-menu";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
+/**
+ * Component for the file upload form in the project hub.
+ * @returns 
+ */
 export default function fileUpload() {
   const [open, setOpen] = useState(false);
   const [toastTitle, setToastTitle] = useState("");
   const [toastDescription, setToastDescription] = useState("");
   const [selectedCar, setSelectedCar] = useState("");
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams({
+    email: "",
+    name: "",
+    description: ""
+  });
 
+  //Array of cars for the dropdown menu
   const cars = [
     { name: "VW ID.3", value: "VW ID.3" },
     { name: "Toyota Mirai", value: "Toyota Mirai" },
     { name: t('datahub.upload.car.dropdown.others'), value: t('datahub.upload.car.dropdown.others') },
   ];
 
-
+  /**
+   * Function to submit the file and the corresponding data to the backend.
+   * @param {*} event
+   */
   function submitForm(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -34,6 +45,11 @@ export default function fileUpload() {
     event.target.reset();
   }
 
+  /**
+   * Function to toggle the toast.
+   * @param {*} title the title of the toast
+   * @param {*} shouldOpen whether the toast should be open or not
+   */
   function toggleToast(title, shouldOpen = null) {
     setToastTitle(title);
     if (shouldOpen !== null) {
@@ -43,6 +59,10 @@ export default function fileUpload() {
     }
   }
 
+  /**
+   * Function to upload the data to the backend.
+   * @param {*} formData the data to be uploaded 
+   */
   async function uploadData(formData) {
     const BASE_URL = "http://localhost:5555/api";
     try {
@@ -99,6 +119,7 @@ export default function fileUpload() {
                   type="email"
                   required
                   placeholder={t('datahub.upload.email.placeholder')}
+                  value={searchParams.get("email")}
                 />
               </Form.Control>
             </Form.Field>
@@ -128,6 +149,7 @@ export default function fileUpload() {
                   type="text"
                   required
                   placeholder={t('datahub.upload.name.placeholder')}
+                  value={searchParams.get("name")}
                 />
               </Form.Control>
             </Form.Field>
@@ -150,6 +172,7 @@ export default function fileUpload() {
                   required
                   rows="4"
                   placeholder={t('datahub.upload.description.placeholder')}
+                  value={searchParams.get("description")}
                 />
               </Form.Control>
             </Form.Field>

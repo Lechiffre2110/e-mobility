@@ -22,9 +22,13 @@ import enTranslation from "./locales/en.json";
 import deTranslation from "./locales/de.json";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Translation wrapper for the whole application.
+ */
 const TranslationWrapper = () => {
   const { t } = useTranslation();
 
+  // Router setup
   const router = createBrowserRouter([
     {
       path: "/",

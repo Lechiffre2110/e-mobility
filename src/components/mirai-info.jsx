@@ -1,3 +1,7 @@
+/**
+ * Component for the Mirai info
+ * @param {*} t translation function
+ */
 export default function miraiInfo({t}) {
   return (
     <>

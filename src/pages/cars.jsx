@@ -6,6 +6,10 @@ import ID3Info from "../components/id3-info";
 import MiraiInfo from "../components/mirai-info";
 import VWID3 from "../assets/vw-id3.png.webp";
 
+/**
+ * Component for the cars page.
+ * @param {*} t translation function
+ */
 export default function Cars({t}) {
   const [ID3Visble, setID3Visible] = useState(false);
   const [miraiVisble, setMiraiVisible] = useState(false);

@@ -6,7 +6,9 @@ import OnboardingDialog from "./onboarding-dialog";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
-
+/**
+ * Component for the contribution form in the project hub.
+ */
 export default function Contribution() {
   const { t } = useTranslation();
     const rollen = [
@@ -17,6 +19,10 @@ export default function Contribution() {
 
     const [selectedRolle, setSelectedRolle] = useState("");
     
+    /**
+     * Submit the contribution form to the backend.
+     * @param {*} event 
+     */
     async function submitForm(event) {
       const BASE_URL = "http://localhost:5555/api";
       event.preventDefault();

@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Avatar from "@radix-ui/react-avatar";
 import LinkedInIcon from "../assets/linkedin.svg";
 import GitHubIcon from "../assets/github.svg";
+import { useTranslation } from "react-i18next";
 
+/**
+ * Component for displaying a list of contributors in the authors page.
+ * @param {*} props a list of contributors
+ */
 export default function ContributorList(props) {
+  const { t } = useTranslation();
   const color = props.color;
   const [showDetails, setShowDetails] = useState(
     props.contributors.map(() => false)
@@ -90,12 +96,13 @@ export default function ContributorList(props) {
           {showDetails[index] && (
             <div>
               <p>
-                <strong>Kontakt:</strong> {contributor.email}
+                <strong>{t('authorspage.contact')}</strong> {contributor.email}
               </p>
               <p>
-                <strong>Tätigkeitsbereich:</strong>
+                <strong>{t('authorspage.work')}</strong>
               </p>
               <p>{contributor.description}</p>
+              <div className="flex gap-2 mt-2">
               {contributor.github && (
                 <a href={contributor.github}>
                   <img src={GitHubIcon} className="w-5 h-5" />
@@ -106,6 +113,7 @@ export default function ContributorList(props) {
                   <img src={LinkedInIcon} className="w-5 h-5" />
                 </a>
               )}
+              </div>
             </div>
           )}
         </div>

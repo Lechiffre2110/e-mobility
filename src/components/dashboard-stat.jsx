@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import * as Progress from "@radix-ui/react-progress";
+
+/**
+ * Component for the dashboard statistics.
+ * @param {*} props icon, title and value of the statistic
+ */
 export default function DashboardStat(props) {
   const [progress, setProgress] = useState(5);
 
+  /**
+   * Update the progress bar based on the value.
+   */
   useEffect(() => {
     const timer = setTimeout(() => setProgress(props.value*5), props.order * 200);
     return () => clearTimeout(timer);
@@ -15,7 +23,7 @@ export default function DashboardStat(props) {
           <img src={props.icon} className="w-[30px] h-[30px]" />
           <div>
             <h3 className="text-gray-800">{props.title}</h3>
-            <p className="text-2xl font-bold text-right text-[#6C62DD]">{props.value}</p>
+            <p className="text-2xl font-bold text-right text-[#333]">{props.value}</p>
           </div>
         </div>
         <Progress.Root
@@ -26,7 +34,7 @@ export default function DashboardStat(props) {
           value={progress}
         >
           <Progress.Indicator
-            className="bg-[#6C62DD] w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+            className="bg-indigo-500 w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
             style={{ transform: `translateX(-${100 - progress}%)` }}
           />
         </Progress.Root>

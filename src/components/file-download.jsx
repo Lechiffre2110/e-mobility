@@ -2,7 +2,10 @@ import DataTable from "./data-table";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-
+/**
+ * Component for the download section of the data hub.
+ * @param {*}
+ */
 export default function FileDownload() {
   const { t } = useTranslation();
 

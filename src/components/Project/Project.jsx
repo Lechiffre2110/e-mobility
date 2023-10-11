@@ -3,17 +3,20 @@ import HorizontalSeparator from "../horizontal-separator";
 import "./project.css";
 import { useTranslation } from "react-i18next";
 
-
+/**
+ * Component that displays the project's authors, professors and contributors.
+ * @param {*} project object containing the project's authors, professors and contributors.
+ */
 export const Project = ({ project }) => {
   const { t } = useTranslation();
-  (
+  return (
   <div className="">
     <h1 className="text-3xl text-[#333] mb-2">{t('authorspage.header')}</h1>
     <p>{t('authorspage.text')}</p>
     <HorizontalSeparator />
     <div className="authors">
       <ContributorList
-        title="Autor"
+        title={t('authorspage.author')}
         contributors={project.authors}
         color="red"
       />
@@ -21,7 +24,7 @@ export const Project = ({ project }) => {
     <HorizontalSeparator />
     <div className="professors">
       <ContributorList
-        title="Professoren"
+        title={t('authorspage.professors')}
         contributors={project.professors}
         color="violet"
       />
@@ -29,7 +32,7 @@ export const Project = ({ project }) => {
     <HorizontalSeparator />
     <div className="contributors">
       <ContributorList
-        title="Studenten"
+        title={t('authorspage.students')}
         contributors={project.contributors}
         color="green"
       />

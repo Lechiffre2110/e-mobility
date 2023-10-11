@@ -3,24 +3,37 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Component for the navbar.
+ */
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("home");
 
-  function toggleMobileMenu() {
-    menuOpen ? setMenuOpen(false) : setMenuOpen(true);
-  }
-
-  function handleLinkClick() {
+  /**
+   * Set the current page based on the menu item clicked.
+   * @param {String} page the menu item clicked
+   */
+  function handleLinkClick(page) {
     setMenuOpen(false);
+    setCurrentPage(page);
   }
 
   const { t, i18n } = useTranslation();
 
+  /**
+   * Function to change the language of the page.
+   * @param {*} language the language to change to (en or de)
+   */
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
   const [currentLanguage, setCurrentLanguage] = useState("de"); 
 
+  /**
+   * Toggle the language of the page.
+   * If the current language is english, change it to german and vice versa.
+   */
   const toggleLanguage = () => {
     if (currentLanguage === "en") {
       changeLanguage("de");
@@ -46,7 +59,7 @@ export default function Navbar() {
         <img src={Logo} className="w-8 h-8 lg:hidden" />
 
         <div className="lg:hidden">
-          <button className="fixed top-5 right-5" onClick={toggleMobileMenu}>
+          <button className="fixed top-5 right-5" onClick={() => setMenuOpen(!menuOpen)}>
             {!menuOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,55 +104,65 @@ export default function Navbar() {
           } lg:block lg:relative w-full pb-5 lg:w-[60%] z-[20] top-14 left-0 lg:top-0 bg-white lg:opacity-100`}
         >
           <ul className="flex flex-col gap-6 lg:gap-0 lg:flex-row justify-around [&>li]:py-2 lg:[&>li]:px-5 ">
+            {currentPage !== "home" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/" onClick={handleLinkClick}>
+              <Link to="/" onClick={() => handleLinkClick("home")}>
               {t('navbar.landingpage')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
+            {currentPage !== "authors" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/authors" onClick={handleLinkClick}>
+              <Link to="/authors" onClick={() => handleLinkClick("authors")}>
               {t('navbar.authors')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
+            {currentPage !== "cars" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/cars" onClick={handleLinkClick}>
+              <Link to="/cars" onClick={() => handleLinkClick("cars")}>
               {t('navbar.cars')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
             <li className="duration-300 ease-in w-min group">
               <Link
                 to="https://project-e-mobility.gitbook.io/projekt-e-mobility/"
                 target="_blank"
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick(currentPage)}
               >
                 {t('navbar.documentation')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            {currentPage !== "blog" && (
             <li className="duration-300 ease-in w-min group">
-              <Link to="/blog" onClick={handleLinkClick}>
+              <Link to="/blog" onClick={() => handleLinkClick("blog")}>
               {t('navbar.blog')}
               </Link>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            )}
             <li className="duration-300 ease-in w-min group">
             <button onClick={toggleLanguage}>
-            {currentLanguage === "en" ? "🇩🇪" : "🇬🇧"}
+            {currentLanguage === "en" ? "DE" : "EN"}
             </button>
-              <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 green-background"></span>
             </li>
+            {currentPage !== "datahub" && (
             <li className="px-5 rounded-full w-max bg-[#1E1F22] text-white hover:bg-blackA11">
               <Link
                 className="font-semibold "
                 to="/datahub"
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick("datahub")}
               >
                 {t('navbar.datahub')}
               </Link>
             </li>
+            )}
           </ul>
         </nav>
       </div>

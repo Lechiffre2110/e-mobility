@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Project } from "../components/Project/Project";
 
+/**
+ * Component for the authors page.
+ */
 export default function Authors() {
   const [projects, setProjects] = useState([]);
   const sampleProject = {
@@ -41,6 +44,9 @@ export default function Authors() {
 
   const BASE_URL = "http://localhost:5555/api";
 
+  /**
+   * Fetches all contributors from the backend or falls back to a sample project, if the request fails.
+   */
   const fetchContributors = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/contributors`);
@@ -67,6 +73,9 @@ export default function Authors() {
     }
   };
 
+  /**
+   * Fetches all contributors from the backend on component mount.
+   */
   useEffect(() => {
     fetchContributors();
   }, []);
