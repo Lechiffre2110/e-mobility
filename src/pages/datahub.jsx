@@ -28,10 +28,28 @@ import QuickActions from "../components/quick-actions";
  * @param {*} t translation function
  */
 export default function DataHub({t}) {
+  const [initials, setInitials] = useState("");
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [searchParams, setSearchParams] = useSearchParams({
     menuPage: "dashboard",
   });
+
+  /**
+   * Get the initials of the user.
+   * @param {String} name the name of the user
+   * @returns the initials of the user
+   */
+  function getInitials(name) {
+    //if name is an email address, show the first letter of the email
+    if (name.includes("@")) {
+      return name.charAt(0).toUpperCase();
+    }
+    let initials = name.match(/\b\w/g) || [];
+    initials = (
+      (initials.shift() || "") + (initials.pop() || "")
+    ).toUpperCase();
+    return initials;
+  }
 
   /**
    * Set the menu page url based on the menu item clicked.
@@ -49,6 +67,7 @@ export default function DataHub({t}) {
       setSearchParams({ menuPage: "upload" });
     } else {
       setSearchParams({ menuPage: "dashboard" });
+      setInitials(getInitials(user.name));
     }
   }, [isLoading, isAuthenticated]);
 
@@ -164,7 +183,7 @@ export default function DataHub({t}) {
               <div className="flex flex-row items-center justify-between w-full">
                 <div className="flex gap-2">
                   <div className="flex justify-center items-center bg-gray-200 rounded-full h-[40px] w-[40px] font-bold">
-                    <p>YA</p>
+                    <p>{initials}</p>
                   </div>
                   <div className="max-w-[170px]">
                     <h4 className="text-sm font-semibold truncate">{user.name}</h4>
