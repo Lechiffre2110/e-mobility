@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import XIcon from "../assets/xmark-solid.svg";
 import MenuIcon from "../assets/ellipsis-solid.svg";
 import { useSearchParams } from "react-router-dom";
@@ -16,6 +17,7 @@ export default function MobileDashboardMenu() {
   });
   const [showMenu, setShowMenu] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const { t } = useTranslation();
 
   /**
    * Toggle the menu.
@@ -56,10 +58,13 @@ export default function MobileDashboardMenu() {
           {isAuthenticated && (
             <a onClick={() => changeMenuUrl("onboarding")}>Onboarding</a>
           )}
-          <a onClick={() => changeMenuUrl("download")}>Daten herunterladen</a>
-          <a onClick={() => changeMenuUrl("upload")}>Daten hochladen</a>
-          <a onClick={() => changeMenuUrl("contribution")}>Contribution</a>
-          <a onClick={() => changeMenuUrl("bugs")}>Bug melden</a>
+          {isAuthenticated && (
+            <a onClick={() => changeMenuUrl("quickactions")}>Quick Actions</a>
+          )}
+          <a onClick={() => changeMenuUrl("download")}>{t('datahub.download')}</a>
+          <a onClick={() => changeMenuUrl("upload")}>{t('datahub.upload')}</a>
+          <a onClick={() => changeMenuUrl("contribution")}>{t('datahub.contribution')}</a>
+          <a onClick={() => changeMenuUrl("bugs")}>{t('datahub.bug')}</a>
             {!isAuthenticated && <LoginButton />}
             {isAuthenticated && <LogoutButton />}
         </div>
