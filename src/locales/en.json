@@ -107,5 +107,16 @@
   "carsinfo.acceleration": "Acceleration",
   "carsinfo.range": "Range",
   "carsinfo.capacity": "Battery Capacity",
-  "carsinfo.chargingtime": "Charging Time"
+  "carsinfo.chargingtime": "Charging Time",
+  "blogpage.showallbutton": "Show All",
+  "blogpage.at": "at",
+  "blogpage.reply": "Reply",
+  "blogpage.comment": "Comment",
+  "blogpage.postform.posttitle.placeholder": "Post Title...",
+  "blogpage.postform.postcontent.placeholder": "Write your post...",
+  "blogpage.postform.postcategory.placeholder": "Post Category...",
+  "blogpage.commentform.name": "Your Name...",
+  "blogpage.commentform.commentcontent": "Write your comment...",
+  "blogpage.commentsubmitbutton":"Save",
+  "blogpage.postsubmitbutton":"Create Post"
 }

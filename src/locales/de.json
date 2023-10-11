@@ -107,6 +107,17 @@
   "carsinfo.acceleration":"Beschleunigung",
   "carsinfo.range":"Reichweite",
   "carsinfo.capacity":"Batteriekapazität",
-  "carsinfo.chargingtime":"Ladezeit"
+  "carsinfo.chargingtime":"Ladezeit",
+  "blogpage.showallbutton":"Alle anzeigen",
+  "blogpage.at":"um",
+  "blogpage.reply":"Antworten",
+  "blogpage.comment":"Kommentieren",
+  "blogpage.postform.posttitle.placeholder":"Titel des Posts...",
+  "blogpage.postform.postcontent.placeholder":"Schreibe deinen Post...",
+  "blogpage.postform.postcategory.placeholder":"Kategorie des Posts...",
+  "blogpage.commentform.name":"Dein Name...",
+  "blogpage.commentform.commentcontent":"Schreibe deinen Kommentar...",
+  "blogpage.commentsubmitbutton":"Speichern",
+  "blogpage.postsubmitbutton":"Post erstellen"
   
 }
