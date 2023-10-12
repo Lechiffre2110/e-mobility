@@ -41,7 +41,7 @@ const TranslationWrapper = () => {
         },
         {
           path: "/blog",
-          element: <Blog />,
+          element: <Blog t={t}/>,
         },
         {
           path: "/cars",
