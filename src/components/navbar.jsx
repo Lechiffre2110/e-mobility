@@ -130,7 +130,7 @@ export default function Navbar() {
             )}
             <li className="duration-300 ease-in w-min group">
               <Link
-                to="https://project-e-mobility.gitbook.io/projekt-e-mobility/"
+                to="https://github.com/Lechiffre2110/e-mobility/wiki"
                 target="_blank"
                 onClick={() => handleLinkClick(currentPage)}
               >

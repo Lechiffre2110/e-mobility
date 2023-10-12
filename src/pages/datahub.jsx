@@ -31,7 +31,7 @@ export default function DataHub({t}) {
   const [initials, setInitials] = useState("");
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [searchParams, setSearchParams] = useSearchParams({
-    menuPage: "dashboard",
+    menuPage: "upload",
   });
 
   /**
@@ -41,7 +41,7 @@ export default function DataHub({t}) {
    */
   function getInitials(name) {
     //if name is an email address, show the first letter of the email
-    if (name.includes("@")) {
+    if (name === undefined || name.includes("@") || name === "") {
       return name.charAt(0).toUpperCase();
     }
     let initials = name.match(/\b\w/g) || [];
@@ -60,16 +60,15 @@ export default function DataHub({t}) {
   }
 
   /**
-   * Set the menu page url to upload if the user is not authenticated or to dashboard otherwise.
+   * Set the menu page url to upload if the user is not authenticated or to dashboard otherwise, keeping the other search params.
    */
+
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      setSearchParams({ menuPage: "upload" });
-    } else {
-      setSearchParams({ menuPage: "dashboard" });
+    if (isAuthenticated) {
       setInitials(getInitials(user.name));
-    }
-  }, [isLoading, isAuthenticated]);
+    } 
+  }
+  , [isAuthenticated]);
 
   
 
